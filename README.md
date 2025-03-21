@@ -4,6 +4,7 @@
   <a href="#installation"><img src="https://img.shields.io/badge/Install-Now-brightgreen" alt="Install Now"></a>
   <a href="https://github.com/kolarski/s/stargazers"><img src="https://img.shields.io/github/stars/kolarski/s" alt="Stars"></a>
   <a href="https://github.com/kolarski/s/blob/master/LICENSE"><img src="https://img.shields.io/github/license/kolarski/s" alt="License"></a>
+  <a href="https://kolarski.github.io/s/"><img src="https://img.shields.io/badge/Website-Visit%20Now-blue" alt="Website"></a>
 </p>
 
 <p align="center"><i>"Finally, a tool that makes screen sessions as simple as they should be!"</i></p>
@@ -165,6 +166,7 @@ If `s` has made your terminal life better:
 2. **🐦 Share on social** with #TerminalProductivity and tag us
 3. **👩‍💻 Introduce it** at your next team meeting
 4. **🍴 Contribute** features or fixes you'd like to see
+5. **🌐 Visit our [website](https://kolarski.github.io/s/)** to learn more about the project
 
 ## Contributing
 

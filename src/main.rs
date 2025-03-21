@@ -3,18 +3,50 @@ use s::application::use_cases::handle_screen_command::HandleScreenCommand;
 use s::application::use_cases::kill_screen_session::KillScreenSession;
 use s::infrastructure::adapters::screen_command::{ScreenCommand, ScreenCommandError};
 use s::infrastructure::adapters::user_input::UserInput;
+use s::infrastructure::adapters::system_checker::SystemChecker;
+use s::infrastructure::adapters::system_error::SystemError;
 use s::infrastructure::repositories::screen_repository::ScreenRepositoryImpl;
 use s::presentation::formatters::table_formatter::TableFormatter;
 use s::presentation::settings::{AppSettings, AppIcons};
 use std::env;
+use std::process;
+
+// Version constant derived from Cargo.toml
+const VERSION: &str = env!("CARGO_PKG_VERSION");
 
 fn main() {
     // Parse command-line flags
     let args: Vec<String> = env::args().collect();
     let use_emoticons = args.iter().any(|arg| arg == "--emoticons" || arg == "-e");
+    let show_version = args.iter().any(|arg| arg == "--version" || arg == "-v");
+    
+    // Show version and exit if requested
+    if show_version {
+        println!("s version {}", VERSION);
+        process::exit(0);
+    }
     
     // Create application settings
     let settings = AppSettings::new().with_emoticons(use_emoticons);
+    
+    // Check system compatibility
+    let system_checker = SystemChecker::new();
+    
+    // Check if OS is compatible (Linux or macOS)
+    if !system_checker.is_compatible_os() {
+        let os = format!("{:?}", system_checker.detect_os());
+        let error_icon = if settings.use_emoticons { AppIcons::error() } else { "" };
+        eprintln!("{}Error: {}", error_icon, SystemError::UnsupportedOs(os));
+        process::exit(1);
+    }
+    
+    // Check if screen is installed
+    if !system_checker.is_screen_installed() {
+        let instructions = system_checker.get_installation_instructions();
+        let error_icon = if settings.use_emoticons { AppIcons::error() } else { "" };
+        eprintln!("{}Error: {}", error_icon, SystemError::ScreenNotInstalled(instructions));
+        process::exit(1);
+    }
     
     // Create dependencies
     let screen_command = ScreenCommand::new();
@@ -31,7 +63,7 @@ fn main() {
         // If just "s" was entered, show the list of sessions
         1 => {
             // Create use case for listing sessions
-            let list_sessions_use_case = ListScreenSessions::new(screen_repository);
+            let list_sessions_use_case = ListScreenSessions::with_settings(screen_repository, settings);
             
             // Execute the use case
             match list_sessions_use_case.execute() {

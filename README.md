@@ -21,6 +21,22 @@ With `s`, you can harness the power of `screen` without the cognitive overhead o
 
 ## Installation
 
+### Quick Install (Recommended)
+
+Install or upgrade to the latest version using our installation script:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/yourusername/s/main/install.sh | bash
+```
+
+This script will:
+
+- Detect your operating system
+- Download the appropriate binary for your system
+- Install it to a suitable location (typically /usr/local/bin)
+- Add the installation directory to your PATH if needed
+- Display the installed version information
+
 ### From Source
 
 ```bash
@@ -37,59 +53,76 @@ cargo install --path .
 ### Basic Commands
 
 ```bash
-# Start a new session
-s new [session-name]
-
 # List all sessions
-s list
+s
 
-# Attach to a session
-s attach [session-name]
+# Create and attach to a session
+s <session-name>
 
-# Detach from current session
-s detach
-
-# Kill a session
-s kill [session-name]
+# Kill/remove a session
+s kill <session-name>
 ```
 
-### Examples
+### Options
 
 ```bash
-# Start a new session named "dev"
-s new dev
-
-# Start a new session with a command
-s new web "npm start"
-
-# List all running sessions
-s list
-
-# Attach to existing session
-s attach dev
-
-# Split the current window horizontally
-s split
-
-# Split the current window vertically
-s vsplit
-
-# Navigate between panes
-s next
-s prev
-
-# Create a new window
-s window
+# Enable emoticon icons in the output
+s --emoticons
+# or
+s -e
 ```
 
-## How It Works
+## How It Works / Documentation
 
-`s` translates its user-friendly commands into the appropriate `screen` commands behind the scenes. It's designed to provide all the functionality of `screen` without requiring you to memorize complex command sequences.
+`s` is designed to simplify your workflow with screen sessions through a minimal set of commands:
+
+### Listing Sessions
+
+Simply running `s` without any arguments will list all your active screen sessions in a clean table format:
+
+```
+ID              NAME                           CREATED AT
+-----------------------------------------------------------------
+1200543         test                           21.03.2025 11:51:37
+```
+
+### Creating and Attaching to Sessions
+
+To create a new session or attach to an existing one:
+
+```bash
+s <session-name>
+```
+
+If the session doesn't exist, `s` will ask if you want to create it:
+
+```
+Screen 'my-session' does not exist. Create and attach? [Y/n]
+```
+
+If the session exists but is detached, `s` will automatically attach to it.
+
+If the session exists and is already attached elsewhere, `s` will ask if you want to detach the other connection and reattach:
+
+```
+Screen 'my-session' is already attached. Detach and reattach? [Y/n]
+```
+
+### Killing/Removing Sessions
+
+To remove a screen session:
+
+```bash
+s kill <session-name>
+```
+
+This will terminate the specified session.
 
 ## Dependencies
 
 - Rust (for building from source)
 - Linux `screen` command (must be installed on your system)
+- Compatible with Linux and macOS
 
 ## Roadmap
 

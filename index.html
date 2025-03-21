@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>s - Terminal Sessions Made Ridiculously Simple</title>
+    <meta
+      name="description"
+      content="s is a minimalist wrapper around screen that makes terminal session management dead simple while keeping all the power of the original tool."
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "terminal-black": "#1a1a1a",
+              "terminal-gray": "#2d2d2d",
+              "terminal-highlight": "#3d3d3d",
+              "terminal-green": "#4cd137",
+              "terminal-text": "#f5f6fa",
+            },
+          },
+        },
+      };
+    </script>
+    <style type="text/tailwindcss">
+      @layer utilities {
+        .text-gradient {
+          background-clip: text;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
+        .code-block {
+          background-color: rgba(40, 42, 54, 0.8);
+          border-radius: 0.5rem;
+          padding: 1rem;
+          overflow-x: auto;
+          font-family: "Courier New", monospace;
+        }
+        .terminal-cursor::after {
+          content: "|";
+          animation: blink 1s step-end infinite;
+        }
+        @keyframes blink {
+          from,
+          to {
+            opacity: 1;
+          }
+          50% {
+            opacity: 0;
+          }
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-terminal-black text-terminal-text">
+    <div class="min-h-screen flex flex-col">
+      <!-- Hero Section -->
+      <header class="py-24 px-6 md:px-12 lg:px-24 relative overflow-hidden">
+        <div
+          class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiMyMjIiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PHBhdGggZD0iTTM2IDM0aDR2MWgtNHYtMXptMC0xMnY5aDR2LTloLTR6bTYgMGg0djF2OGgtNHYtOXptLTYgMWgtNHYxaC0xdi0yaDE2djFoLTF2MWgtNHY5aDRWMzBoMVYxN2gtMXYxek05IDEzaDR2MWgtNHYtMXptMC0xMnY5aDR2LTlIOXptNiAwaDR2MXY4aC00di05em0tNiAxaC00djFINHYtMmgxNnYxaC0xdjFoLTR2OWg0VjMwaDFWMTdoLTF2MXpNNTMgMUgzOXYyaDEwdjE2SDM5djJoMTRWMXptMCA0NmE1IDUgMCAwIDEtNSA1aC0zYTUgNSAwIDAgMS01LTV2LTNoMlY0YTUgNSAwIDAgMSA1LTVoM2E1IDUgMCAwIDEgNSA1djQ0YTUgNSAwIDAgMS01IDVoLTNhNSA1IDAgMCAxLTUtNXYtM0g0MVY0YTUgNSAwIDAgMSA1LTVoMmEzIDMgMCAwIDEgMyAzaC0yYTEgMSAwIDAgMC0xLTFoLTJhMyAzIDAgMCAwLTMgM3Y0NGEzIDMgMCAwIDAgMyAzaDJhMyAzIDAgMCAwIDMtM3YtMmgtMnptLTgtNlY0YTMgMyAwIDAgMC0zLTNoLTJhMSAxIDAgMCAwLTEgMWgyYTMgMyAwIDAgMSAzIDN2MzlhMyAzIDAgMCAxLTMgM2gtMmEzIDMgMCAwIDEtMy0zdi0xSDI1djFhNSA1IDAgMCAwIDUgNWgzYTUgNSAwIDAgMCA1LTV2LTNoMTB2LTJINDV6TTIxIDFoLTh2MmgzdjE2aC0zdjJoOFYxem00NCAxNlYyaC04djJoMyAxM3YxNEg0N3oyMSAyMWgtOHYyaDF2MTZoLTF2MmgyVjI1aDR2MTZoMnYtMmgtMVYyM2gxdi0yeiIvPjwvZz48L2c+PC9zdmc+')] opacity-10"
+        ></div>
+        <div class="max-w-5xl mx-auto relative z-10">
+          <div class="flex flex-col items-center text-center mb-12">
+            <div class="text-6xl md:text-8xl font-bold mb-4">
+              <h1
+                class="inline-block text-gradient bg-gradient-to-r from-terminal-green to-blue-500"
+              >
+                🖥️ s
+              </h1>
+            </div>
+            <h2 class="text-2xl md:text-3xl font-light mb-8">
+              Terminal Sessions Made
+              <span class="font-semibold italic text-terminal-green"
+                >Ridiculously</span
+              >
+              Simple
+            </h2>
+            <p class="text-xl text-gray-400 max-w-3xl mx-auto italic">
+              "Finally, a tool that makes screen sessions as simple as they
+              should be!"
+            </p>
+
+            <div class="flex flex-wrap gap-4 justify-center mt-10">
+              <a
+                href="#install"
+                class="bg-terminal-green hover:bg-green-600 text-terminal-black font-bold py-3 px-8 rounded-lg transition-all duration-300 shadow-lg hover:shadow-terminal-green/30 flex items-center"
+              >
+                <i class="fas fa-download mr-2"></i> Install Now
+              </a>
+              <a
+                href="https://github.com/kolarski/s"
+                target="_blank"
+                class="bg-terminal-highlight hover:bg-gray-700 text-terminal-text font-bold py-3 px-8 rounded-lg transition-all duration-300 flex items-center"
+              >
+                <i class="fab fa-github mr-2"></i> View on GitHub
+              </a>
+            </div>
+          </div>
+
+          <div class="bg-terminal-gray rounded-xl shadow-xl overflow-hidden">
+            <div
+              class="bg-terminal-highlight rounded-t-xl p-3 flex items-center"
+            >
+              <div class="flex space-x-2">
+                <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+              </div>
+              <div class="ml-4 text-gray-400 text-sm">Terminal</div>
+            </div>
+            <div
+              class="p-6 font-mono text-sm md:text-base overflow-x-auto whitespace-pre-wrap"
+            >
+              <div class="mb-2">
+                <span class="text-green-500">alex@server</span>:<span
+                  class="text-blue-400"
+                  >~</span
+                >$ s
+              </div>
+              <div class="mb-4">
+                <table class="min-w-full">
+                  <thead>
+                    <tr class="text-gray-400 border-b border-gray-700">
+                      <th class="py-2 text-left">ID</th>
+                      <th class="py-2 text-left">Name</th>
+                      <th class="py-2 text-left">Status</th>
+                      <th class="py-2 text-left">Created</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="py-1">1</td>
+                      <td class="py-1">api-server</td>
+                      <td class="py-1">
+                        <span class="text-terminal-green">Running</span>
+                      </td>
+                      <td class="py-1">2 days ago</td>
+                    </tr>
+                    <tr>
+                      <td class="py-1">2</td>
+                      <td class="py-1">db-backup</td>
+                      <td class="py-1">
+                        <span class="text-terminal-green">Running</span>
+                      </td>
+                      <td class="py-1">3 hours ago</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="mb-2">
+                <span class="text-green-500">alex@server</span>:<span
+                  class="text-blue-400"
+                  >~</span
+                >$ s api-server
+              </div>
+              <div class="terminal-cursor">
+                Attaching to session 'api-server'...
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- What & Why Section -->
+      <section class="py-16 px-6 md:px-12 lg:px-24 bg-terminal-gray">
+        <div class="max-w-5xl mx-auto">
+          <div class="grid md:grid-cols-2 gap-12">
+            <div>
+              <h2 class="text-2xl md:text-3xl font-bold mb-6">
+                What are Terminal Sessions?
+              </h2>
+              <p class="text-gray-300 mb-4">
+                Terminal sessions (via tools like
+                <code class="bg-terminal-highlight px-1 rounded">screen</code>
+                or <code class="bg-terminal-highlight px-1 rounded">tmux</code>)
+                let you:
+              </p>
+              <ul class="list-disc list-inside text-gray-300 space-y-3 pl-4">
+                <li>
+                  <strong class="text-terminal-green"
+                    >Keep processes running</strong
+                  >
+                  even after you disconnect from SSH or close your terminal
+                </li>
+                <li>
+                  <strong class="text-terminal-green">Resume your work</strong>
+                  exactly where you left off
+                </li>
+                <li>
+                  <strong class="text-terminal-green"
+                    >Run multiple terminal windows</strong
+                  >
+                  within a single connection
+                </li>
+                <li>
+                  <strong class="text-terminal-green"
+                    >Share terminal sessions</strong
+                  >
+                  with teammates for collaboration
+                </li>
+              </ul>
+              <p class="text-gray-300 mt-4">
+                If you're using SSH to connect to servers or running long
+                processes that you don't want to lose when your connection
+                drops, terminal sessions are essential.
+              </p>
+            </div>
+
+            <div>
+              <h2 class="text-2xl md:text-3xl font-bold mb-6">The Problem</h2>
+              <p class="text-gray-300 mb-4">
+                The standard Linux
+                <code class="bg-terminal-highlight px-1 rounded">screen</code>
+                utility is powerful but notoriously difficult to use:
+              </p>
+              <div class="space-y-4">
+                <div class="bg-terminal-highlight p-4 rounded-lg">
+                  <h3 class="font-semibold text-lg mb-2">For newcomers</h3>
+                  <p class="text-gray-300">
+                    Steep learning curve with complex commands and unintuitive
+                    syntax
+                  </p>
+                </div>
+
+                <div class="bg-terminal-highlight p-4 rounded-lg">
+                  <h3 class="font-semibold text-lg mb-2">
+                    For experienced users
+                  </h3>
+                  <p class="text-gray-300">
+                    Common frustrations that shift focus from your work:
+                  </p>
+                  <ul class="list-disc list-inside text-gray-300 pl-4">
+                    <li>
+                      Multi-step commands to attach to already-attached sessions
+                    </li>
+                    <li>
+                      Having to recall specific syntax when you need to manage
+                      sessions
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="bg-terminal-highlight p-4 rounded-lg">
+                  <h3 class="font-semibold text-lg mb-2">For everyone</h3>
+                  <p class="text-gray-300">
+                    Messy session lists, accidental duplicate sessions, and
+                    complicated management
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-12 text-center">
+            <p class="text-xl text-gray-300">
+              You're not alone. Thousands of developers wish for a simpler way
+              to handle these tasks without the cognitive overhead.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Solution Section -->
+      <section class="py-16 px-6 md:px-12 lg:px-24 bg-terminal-black">
+        <div class="max-w-5xl mx-auto">
+          <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">
+              The Solution: <span class="text-terminal-green">s</span>
+            </h2>
+            <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+              <span class="text-terminal-green font-mono">s</span> is a
+              minimalist wrapper around
+              <span class="font-mono">screen</span> that makes terminal session
+              management <strong>dead simple</strong> while keeping all the
+              power of the original tool that you actually need.
+            </p>
+          </div>
+
+          <div
+            class="bg-terminal-gray rounded-xl overflow-hidden shadow-xl mb-12"
+          >
+            <div class="bg-terminal-highlight p-4 rounded-t-xl">
+              <h3 class="text-xl font-semibold flex items-center">
+                <i class="far fa-clock mr-2"></i> Try It in 10 Seconds
+              </h3>
+            </div>
+            <div class="p-6 code-block text-sm md:text-base">
+              <pre class="text-gray-300">
+<span class="text-gray-500"># 1. Install</span>
+<span class="text-yellow-400">curl -fsSL https://raw.githubusercontent.com/kolarski/s/master/install.sh | bash</span>
+
+<span class="text-gray-500"># 2. List sessions</span>
+<span class="text-yellow-400">s</span>
+
+<span class="text-gray-500"># 3. Create/attach to a session</span>
+<span class="text-yellow-400">s my-project</span>
+
+<span class="text-gray-500"># 4. Detach when done (standard screen command)</span>
+<span class="text-yellow-400">Ctrl+A, then D</span>
+
+<span class="text-gray-500"># 5. Kill a session when completely finished</span>
+<span class="text-yellow-400">s kill my-project</span>
+</pre>
+            </div>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-8 mb-12">
+            <div class="bg-terminal-highlight p-6 rounded-xl">
+              <h3 class="text-xl font-bold mb-4">What to expect:</h3>
+              <ul class="space-y-3 text-gray-300">
+                <li class="flex">
+                  <i
+                    class="fas fa-check-circle text-terminal-green mt-1 mr-2"
+                  ></i>
+                  <span
+                    >When you run
+                    <code class="bg-terminal-gray px-2 py-1 rounded">s</code>
+                    you'll see a clean table of all sessions</span
+                  >
+                </li>
+                <li class="flex">
+                  <i
+                    class="fas fa-check-circle text-terminal-green mt-1 mr-2"
+                  ></i>
+                  <span
+                    ><code class="bg-terminal-gray px-2 py-1 rounded"
+                      >s my-project</code
+                    >
+                    smartly attaches to existing sessions or confirms before
+                    creating new ones</span
+                  >
+                </li>
+                <li class="flex">
+                  <i
+                    class="fas fa-check-circle text-terminal-green mt-1 mr-2"
+                  ></i>
+                  <span>Standard screen shortcuts work inside sessions</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="bg-terminal-highlight p-6 rounded-xl">
+              <h3 class="text-xl font-bold mb-4">
+                New to terminal sessions? Once inside a session, you can:
+              </h3>
+              <ul class="space-y-3 text-gray-300">
+                <li class="flex">
+                  <i class="fas fa-terminal text-terminal-green mt-1 mr-2"></i>
+                  <span>Run commands that continue even if you disconnect</span>
+                </li>
+                <li class="flex">
+                  <i class="fas fa-terminal text-terminal-green mt-1 mr-2"></i>
+                  <span>Create multiple terminal windows (Ctrl+A, C)</span>
+                </li>
+                <li class="flex">
+                  <i class="fas fa-terminal text-terminal-green mt-1 mr-2"></i>
+                  <span>Switch between windows (Ctrl+A, 0-9)</span>
+                </li>
+                <li class="flex">
+                  <i class="fas fa-terminal text-terminal-green mt-1 mr-2"></i>
+                  <span
+                    >Disconnect and reconnect later exactly where you left
+                    off</span
+                  >
+                </li>
+                <li class="flex">
+                  <i class="fas fa-terminal text-terminal-green mt-1 mr-2"></i>
+                  <span
+                    >For more commands, press Ctrl+A, ? for the help menu</span
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="bg-terminal-gray rounded-xl overflow-hidden shadow-xl">
+            <div class="bg-terminal-highlight p-4 rounded-t-xl">
+              <h3 class="text-xl font-semibold">
+                Core Commands You'll Use Daily
+              </h3>
+            </div>
+            <div class="overflow-x-auto">
+              <table class="min-w-full">
+                <thead>
+                  <tr class="bg-terminal-highlight text-left">
+                    <th class="px-6 py-4 text-gray-300">Task</th>
+                    <th class="px-6 py-4 text-gray-300">Command</th>
+                    <th class="px-6 py-4 text-gray-300">What it Does</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-terminal-highlight">
+                  <tr>
+                    <td class="px-6 py-4">List all sessions</td>
+                    <td class="px-6 py-4">
+                      <code class="bg-terminal-highlight px-2 py-1 rounded"
+                        >s</code
+                      >
+                    </td>
+                    <td class="px-6 py-4">
+                      Shows a clean, human-readable table
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4">Create/attach to a session</td>
+                    <td class="px-6 py-4">
+                      <code class="bg-terminal-highlight px-2 py-1 rounded"
+                        >s name</code
+                      >
+                    </td>
+                    <td class="px-6 py-4">
+                      Creates if it doesn't exist, attaches if it does
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4">Kill a session</td>
+                    <td class="px-6 py-4">
+                      <code class="bg-terminal-highlight px-2 py-1 rounded"
+                        >s kill name</code
+                      >
+                    </td>
+                    <td class="px-6 py-4">Removes the session</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Benefits & Testimonials -->
+      <section class="py-16 px-6 md:px-12 lg:px-24 bg-terminal-gray">
+        <div class="max-w-5xl mx-auto">
+          <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">
+              Why Developers Stick With
+              <span class="text-terminal-green">s</span>
+            </h2>
+          </div>
+
+          <div class="grid md:grid-cols-3 gap-8 mb-16">
+            <div class="bg-terminal-highlight p-6 rounded-xl">
+              <div class="text-terminal-green text-4xl mb-4">
+                <i class="fas fa-keyboard"></i>
+              </div>
+              <h3 class="text-xl font-semibold mb-2">One-Letter Simplicity</h3>
+              <p class="text-gray-300">
+                Just type
+                <code class="bg-terminal-gray px-2 py-0.5 rounded">s</code> and
+                you're productive
+              </p>
+            </div>
+
+            <div class="bg-terminal-highlight p-6 rounded-xl">
+              <div class="text-terminal-green text-4xl mb-4">
+                <i class="fas fa-graduation-cap"></i>
+              </div>
+              <h3 class="text-xl font-semibold mb-2">Zero Learning Curve</h3>
+              <p class="text-gray-300">If you can type, you can use it</p>
+            </div>
+
+            <div class="bg-terminal-highlight p-6 rounded-xl">
+              <div class="text-terminal-green text-4xl mb-4">
+                <i class="fas fa-brain"></i>
+              </div>
+              <h3 class="text-xl font-semibold mb-2">
+                Smart Context Awareness
+              </h3>
+              <p class="text-gray-300">
+                Creates or attaches based on what you need
+              </p>
+            </div>
+
+            <div class="bg-terminal-highlight p-6 rounded-xl">
+              <div class="text-terminal-green text-4xl mb-4">
+                <i class="fas fa-tachometer-alt"></i>
+              </div>
+              <h3 class="text-xl font-semibold mb-2">Increased Productivity</h3>
+              <p class="text-gray-300">
+                Save ~5-10 seconds on every session interaction (adds up to
+                hours saved!)
+              </p>
+            </div>
+
+            <div class="bg-terminal-highlight p-6 rounded-xl">
+              <div class="text-terminal-green text-4xl mb-4">
+                <i class="fas fa-tools"></i>
+              </div>
+              <h3 class="text-xl font-semibold mb-2">
+                Designed for Real Workflows
+              </h3>
+              <p class="text-gray-300">
+                Built by developers for actual day-to-day usage patterns
+              </p>
+            </div>
+
+            <div class="bg-terminal-highlight p-6 rounded-xl">
+              <div class="text-terminal-green text-4xl mb-4">
+                <i class="fas fa-code"></i>
+              </div>
+              <h3 class="text-xl font-semibold mb-2">
+                Built with Modern Engineering
+              </h3>
+              <p class="text-gray-300">
+                Written in Rust with zero dependencies for speed and reliability
+              </p>
+            </div>
+          </div>
+
+          <div class="mb-12">
+            <h3 class="text-2xl font-bold mb-8 text-center">What Users Say</h3>
+            <div class="grid md:grid-cols-3 gap-6">
+              <div class="bg-terminal-highlight p-6 rounded-xl relative">
+                <div
+                  class="absolute -top-3 -left-3 text-4xl text-terminal-green opacity-40"
+                >
+                  ❝
+                </div>
+                <div class="relative">
+                  <p class="text-gray-300 mb-4 italic">
+                    "I've been using screen for 10 years and switching to s has
+                    been a game-changer. So much simpler!"
+                  </p>
+                  <div class="flex items-center">
+                    <div
+                      class="w-8 h-8 bg-terminal-green rounded-full flex items-center justify-center text-terminal-black font-bold"
+                    >
+                      J
+                    </div>
+                    <div class="ml-3">
+                      <p class="font-medium">Jane D.</p>
+                      <p class="text-sm text-gray-400">DevOps Engineer</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bg-terminal-highlight p-6 rounded-xl relative">
+                <div
+                  class="absolute -top-3 -left-3 text-4xl text-terminal-green opacity-40"
+                >
+                  ❝
+                </div>
+                <div class="relative">
+                  <p class="text-gray-300 mb-4 italic">
+                    "This tiny tool saves me at least 15 minutes of frustration
+                    every day."
+                  </p>
+                  <div class="flex items-center">
+                    <div
+                      class="w-8 h-8 bg-terminal-green rounded-full flex items-center justify-center text-terminal-black font-bold"
+                    >
+                      M
+                    </div>
+                    <div class="ml-3">
+                      <p class="font-medium">Michael T.</p>
+                      <p class="text-sm text-gray-400">Backend Developer</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bg-terminal-highlight p-6 rounded-xl relative">
+                <div
+                  class="absolute -top-3 -left-3 text-4xl text-terminal-green opacity-40"
+                >
+                  ❝
+                </div>
+                <div class="relative">
+                  <p class="text-gray-300 mb-4 italic">
+                    "I installed this on our entire team's machines. Everyone
+                    loves it."
+                  </p>
+                  <div class="flex items-center">
+                    <div
+                      class="w-8 h-8 bg-terminal-green rounded-full flex items-center justify-center text-terminal-black font-bold"
+                    >
+                      S
+                    </div>
+                    <div class="ml-3">
+                      <p class="font-medium">Sara L.</p>
+                      <p class="text-sm text-gray-400">Team Lead</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Installation Section -->
+      <section
+        id="install"
+        class="py-16 px-6 md:px-12 lg:px-24 bg-terminal-black"
+      >
+        <div class="max-w-5xl mx-auto">
+          <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Installation</h2>
+            <p class="text-xl text-gray-300">Get started in seconds</p>
+          </div>
+
+          <div
+            class="bg-terminal-gray rounded-xl overflow-hidden shadow-xl mb-12"
+          >
+            <div
+              class="bg-terminal-highlight p-4 rounded-t-xl flex items-center"
+            >
+              <i class="fas fa-check-circle text-terminal-green mr-2"></i>
+              <h3 class="text-xl font-semibold">Quick Install (Recommended)</h3>
+            </div>
+            <div class="p-6 code-block">
+              <pre class="text-gray-300">
+<span class="text-yellow-400">curl -fsSL https://raw.githubusercontent.com/kolarski/s/master/install.sh | bash</span>
+</pre>
+            </div>
+            <div class="p-4 bg-terminal-highlight text-sm">
+              <p class="text-gray-300">The script intelligently:</p>
+              <ul class="list-disc list-inside text-gray-300 pl-4 mt-2">
+                <li>Detects your OS</li>
+                <li>Downloads the appropriate binary</li>
+                <li>Installs to the correct location</li>
+                <li>Adds to your PATH if needed</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-8">
+            <div class="bg-terminal-gray rounded-xl overflow-hidden shadow-xl">
+              <div class="bg-terminal-highlight p-4 rounded-t-xl">
+                <h3 class="text-xl font-semibold">Manual Binary Download</h3>
+              </div>
+              <div class="p-6">
+                <p class="text-gray-300 mb-4">
+                  You can also download the pre-compiled binary directly from
+                  the
+                  <a
+                    href="https://github.com/kolarski/s/releases"
+                    class="text-terminal-green hover:underline"
+                    >GitHub releases page</a
+                  >:
+                </p>
+                <ol
+                  class="list-decimal list-inside text-gray-300 space-y-2 pl-4"
+                >
+                  <li>
+                    Download the appropriate binary for your system (Linux or
+                    macOS)
+                  </li>
+                  <li>
+                    Make it executable:
+                    <code class="bg-terminal-highlight px-2 py-0.5 rounded"
+                      >chmod +x s-linux-amd64</code
+                    >
+                    or
+                    <code class="bg-terminal-highlight px-2 py-0.5 rounded"
+                      >chmod +x s-macos-amd64</code
+                    >
+                  </li>
+                  <li>
+                    Move it to a directory in your PATH:
+                    <code class="bg-terminal-highlight px-2 py-0.5 rounded"
+                      >mv s-linux-amd64 /usr/local/bin/s</code
+                    >
+                    or
+                    <code class="bg-terminal-highlight px-2 py-0.5 rounded"
+                      >mv s-macos-amd64 /usr/local/bin/s</code
+                    >
+                  </li>
+                </ol>
+              </div>
+            </div>
+
+            <div class="bg-terminal-gray rounded-xl overflow-hidden shadow-xl">
+              <div class="bg-terminal-highlight p-4 rounded-t-xl">
+                <h3 class="text-xl font-semibold">From Source</h3>
+              </div>
+              <div class="p-6 code-block">
+                <pre class="text-gray-300">
+<span class="text-yellow-400">git clone https://github.com/kolarski/s.git</span>
+<span class="text-yellow-400">cd s</span>
+<span class="text-yellow-400">cargo install --path .</span>
+</pre>
+              </div>
+              <div class="p-4 bg-terminal-highlight">
+                <h4 class="font-semibold mb-2">Requirements</h4>
+                <ul class="list-disc list-inside text-gray-300 pl-4">
+                  <li>
+                    Linux
+                    <code class="bg-terminal-black px-1 rounded">screen</code>
+                    command must be installed
+                  </li>
+                  <li>Compatible with Linux and macOS</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer
+        class="py-12 px-6 md:px-12 lg:px-24 bg-terminal-gray border-t border-terminal-highlight"
+      >
+        <div class="max-w-5xl mx-auto">
+          <div
+            class="flex flex-col md:flex-row justify-between items-center mb-8"
+          >
+            <div class="mb-6 md:mb-0">
+              <h2 class="text-2xl font-bold flex items-center">
+                <span class="text-terminal-green mr-2">🖥️</span> s
+              </h2>
+              <p class="text-gray-400">
+                Terminal Sessions Made Ridiculously Simple
+              </p>
+            </div>
+
+            <div class="flex space-x-6">
+              <a
+                href="https://github.com/kolarski/s"
+                target="_blank"
+                class="text-gray-400 hover:text-terminal-green transition-colors"
+              >
+                <i class="fab fa-github text-2xl"></i>
+              </a>
+              <a
+                href="https://github.com/kolarski/s/stargazers"
+                target="_blank"
+                class="text-gray-400 hover:text-terminal-green transition-colors"
+              >
+                <i class="fas fa-star text-2xl"></i>
+              </a>
+              <a
+                href="https://github.com/kolarski/s/fork"
+                target="_blank"
+                class="text-gray-400 hover:text-terminal-green transition-colors"
+              >
+                <i class="fas fa-code-branch text-2xl"></i>
+              </a>
+            </div>
+          </div>
+
+          <div
+            class="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-terminal-highlight"
+          >
+            <p class="text-gray-400 mb-4 md:mb-0">
+              Made with <span class="text-red-500">❤️</span> by
+              <a
+                href="https://github.com/kolarski"
+                class="text-terminal-green hover:underline"
+                >Alex Kolarski</a
+              >
+            </p>
+
+            <p class="text-gray-400">
+              <a
+                href="https://github.com/kolarski/s/blob/master/LICENSE"
+                class="hover:underline"
+                >GNU General Public License v3.0</a
+              >
+            </p>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script>
+      // Simple animation for the terminal cursor
+      document.addEventListener("DOMContentLoaded", function () {
+        const cursorElements = document.querySelectorAll(".terminal-cursor");
+        cursorElements.forEach((el) => {
+          el.classList.add("animate-pulse");
+        });
+      });
+    </script>
+  </body>
+</html>

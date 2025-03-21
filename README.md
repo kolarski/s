@@ -1,6 +1,10 @@
+<p align="center">
+  <img src="assets/logo.png" width="200" alt="s - Terminal Sessions Made Simple">
+</p>
+
 # s - Terminal Sessions Made Simple
 
-`s` is a lightweight CLI tool that makes Linux `screen` sessions delightfully easy to use.
+`s` is a lightweight CLI tool that makes Linux `screen` sessions delightfully easy to use for everyday development tasks.
 
 ## Try It Now (Takes 10 Seconds)
 
@@ -23,12 +27,20 @@ You've just used `s` to manage your terminal sessions with simple, intuitive com
 
 ## Why Developers Love `s`
 
-Tired of typing `screen -list`, `screen -r sessionname`, or trying to remember complex detach sequences? `s` solves real developer pain points:
+The standard Linux `screen` command is incredibly powerful and feature-rich—arguably one of the most versatile terminal utilities available. However, for most day-to-day software development tasks, it's significantly overpowered.
+
+Most developers need a handful of simple operations:
+
+- List sessions
+- Create/attach to a session
+- Kill a session
+
+`s` focuses exclusively on these common developer workflows, stripping away the complexity while maintaining the core functionality most developers actually use:
 
 - **Simple Commands**: Replace cryptic screen commands with intuitive ones
 - **Human-Friendly**: Clear prompts and clean output format
 - **Zero Learning Curve**: If you can type `s`, you can use it effectively
-- **Smart Defaults**: It just does what you expect
+- **Smart Defaults**: It just does what you expect, aligned with typical development patterns
 
 ## How It Makes Your Life Better
 

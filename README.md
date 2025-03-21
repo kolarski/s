@@ -1,41 +1,88 @@
-# s - A User-Friendly Wrapper for Linux Screen
+# s - Terminal Sessions Made Simple
 
-`s` is a lightweight, user-friendly command-line utility that wraps the Linux `screen` command, providing a more intuitive and developer-friendly experience.
+`s` is a lightweight CLI tool that makes Linux `screen` sessions delightfully easy to use.
 
-## Why s?
+## Try It Now (Takes 10 Seconds)
 
-The standard Linux `screen` command is incredibly powerful but can be difficult to use due to its:
+```bash
+# Install it
+curl -fsSL https://raw.githubusercontent.com/kolarski/s/refs/heads/master/install.sh | bash
 
-- Complex flag combinations
-- Non-intuitive syntax
-- Hard-to-remember commands
+# List all sessions
+s
 
-With `s`, you can harness the power of `screen` without the cognitive overhead of remembering all those complicated commands and flags.
+# Create/attach to a session
+s my-project
 
-## Features
+# That's it! You're already using s!
+```
 
-- Simple, intuitive commands
-- Human-readable syntax
-- All the power of `screen` with none of the complexity
-- Sensible defaults for common operations
+## What You Just Experienced
 
-## Installation
+You've just used `s` to manage your terminal sessions with simple, intuitive commands. No more complex flags, confusing syntax, or hard-to-remember commands from the standard `screen` utility.
+
+## Why Developers Love `s`
+
+Tired of typing `screen -list`, `screen -r sessionname`, or trying to remember complex detach sequences? `s` solves real developer pain points:
+
+- **Simple Commands**: Replace cryptic screen commands with intuitive ones
+- **Human-Friendly**: Clear prompts and clean output format
+- **Zero Learning Curve**: If you can type `s`, you can use it effectively
+- **Smart Defaults**: It just does what you expect
+
+## How It Makes Your Life Better
+
+### Seamless Session Management
+
+Simply type `s` to view all your sessions in a clean table:
+
+```
+ID              NAME                           CREATED AT
+-----------------------------------------------------------------
+1200543         test                           21.03.2025 11:51:37
+```
+
+### Intuitive Session Creation and Attachment
+
+```bash
+s <session-name>
+```
+
+`s` is smart enough to:
+
+- Create a new session if it doesn't exist (with confirmation)
+- Attach to existing detached sessions automatically
+- Prompt to detach/reattach if the session is already attached elsewhere
+
+### Effortless Session Cleanup
+
+```bash
+s kill <session-name>
+```
+
+## More Advanced Features
+
+```bash
+# Enable emoticon icons in the output
+s --emoticons
+# or
+s -e
+```
+
+## Installation Options
 
 ### Quick Install (Recommended)
-
-Install or upgrade to the latest version using our installation script:
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/kolarski/s/refs/heads/master/install.sh | bash
 ```
 
-This script will:
+The script handles everything for you:
 
-- Detect your operating system
-- Download the appropriate binary for your system
-- Install it to a suitable location (typically /usr/local/bin)
-- Add the installation directory to your PATH if needed
-- Display the installed version information
+- Detects your OS
+- Downloads the right binary
+- Installs to the right location
+- Updates your PATH if needed
 
 ### From Source
 
@@ -48,88 +95,18 @@ cd s
 cargo install --path .
 ```
 
-## Usage
-
-### Basic Commands
-
-```bash
-# List all sessions
-s
-
-# Create and attach to a session
-s <session-name>
-
-# Kill/remove a session
-s kill <session-name>
-```
-
-### Options
-
-```bash
-# Enable emoticon icons in the output
-s --emoticons
-# or
-s -e
-```
-
-## How It Works / Documentation
-
-`s` is designed to simplify your workflow with screen sessions through a minimal set of commands:
-
-### Listing Sessions
-
-Simply running `s` without any arguments will list all your active screen sessions in a clean table format:
-
-```
-ID              NAME                           CREATED AT
------------------------------------------------------------------
-1200543         test                           21.03.2025 11:51:37
-```
-
-### Creating and Attaching to Sessions
-
-To create a new session or attach to an existing one:
-
-```bash
-s <session-name>
-```
-
-If the session doesn't exist, `s` will ask if you want to create it:
-
-```
-Screen 'my-session' does not exist. Create and attach? [Y/n]
-```
-
-If the session exists but is detached, `s` will automatically attach to it.
-
-If the session exists and is already attached elsewhere, `s` will ask if you want to detach the other connection and reattach:
-
-```
-Screen 'my-session' is already attached. Detach and reattach? [Y/n]
-```
-
-### Killing/Removing Sessions
-
-To remove a screen session:
-
-```bash
-s kill <session-name>
-```
-
-This will terminate the specified session.
-
 ## Dependencies
 
-- Rust (for building from source)
-- Linux `screen` command (must be installed on your system)
+- Linux `screen` command must be installed
 - Compatible with Linux and macOS
 
-## Roadmap
+## Share the Joy
 
-- [ ] Configuration file support
-- [ ] Custom keyboard shortcuts
-- [ ] Session templates
-- [ ] Integration with tmux as an alternative backend
+Love using `s`? Here's how to spread the word:
+
+- Star the GitHub repo
+- Share on social media with #sMadeSimple
+- Tell your team about it in your next standup
 
 ## Contributing
 
@@ -137,4 +114,4 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the GNU General Public License v3.0 - see the LICENSE file for details.

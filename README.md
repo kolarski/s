@@ -2,6 +2,7 @@
 <h3 align="center">Terminal Sessions Made <i>Ridiculously</i> Simple</h3>
 <p align="center">
   <a href="#installation"><img src="https://img.shields.io/badge/Install-Now-brightgreen" alt="Install Now"></a>
+  <a href="#quickstart"><img src="https://img.shields.io/badge/QuickStart-Try%20in%2010s-blue" alt="QuickStart"></a>
   <a href="https://github.com/kolarski/s/stargazers"><img src="https://img.shields.io/github/stars/kolarski/s" alt="Stars"></a>
   <a href="https://github.com/kolarski/s/blob/master/LICENSE"><img src="https://img.shields.io/github/license/kolarski/s" alt="License"></a>
   <a href="https://kolarski.github.io/s/"><img src="https://img.shields.io/badge/Website-Visit%20Now-blue" alt="Website"></a>
@@ -20,6 +21,8 @@
 ## Meet `s`
 
 `s` is a minimalist wrapper around `screen` that makes terminal session management **dead simple** while keeping all the power of the original tool that you actually need.
+
+<a name="quickstart"></a>
 
 ### ⏱️ Try It in 10 Seconds
 

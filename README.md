@@ -38,41 +38,14 @@ ID              NAME                           CREATED AT
 
 # Create or attach to a session - that's it!
 s my-project
+# Smart behavior: automatically attaches if the session exists,
+# or asks for confirmation to create a new one if it doesn't
 
 # To detach from a session (return to your regular terminal)
 Ctrl+A, then D
-```
 
-## How `s` Changes Your Workflow
-
-### Before `s`:
-
-```bash
-# List sessions
-screen -list
-# Output: complicated list with numbers and dots
-
-# Create a session
-screen -S my-long-session-name
-
-# Attach to a detached session
-screen -r 1234.my-long-session
-# Oops, error: "There is no screen to be resumed matching 1234.my-long-session."
-```
-
-### After `s`:
-
-```bash
-# List sessions
-s
-# Output:
-ID              NAME                           CREATED AT
------------------------------------------------------------------
-1372328         my-background-task             21.03.2025 13:16:53
-
-# Create or attach to a session
-s my-project
-# That's it!
+# Kill a session when you're done with it
+s kill my-project
 ```
 
 ## Core Commands You'll Use Daily
@@ -138,7 +111,7 @@ cargo install --path .
 - **📦 Written in [Rust](https://www.rust-lang.org/)**: Delivering memory safety without a garbage collector, thread safety without data races, and abstraction without overhead
 - **🏛️ [Domain Driven Design](https://martinfowler.com/bliki/DomainDrivenDesign.html)**: Focused on core domain logic and complex domain models to solve real developer problems
 - **🧱 [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)**: Separation of concerns that makes the codebase modular, testable, and easy to maintain
-- **🚀 Minimal Dependencies**: Lightweight and fast with careful selection of external libraries
+- **🚀 Zero Dependencies**: Completely self-contained with no external libraries, making it lightweight, fast, and secure
 
 `s` is intentionally designed as a thin wrapper around the robust `screen` utility rather than reimplementing its functionality. This approach leverages the stability and feature set of `screen` while providing a dramatically simplified interface for everyday use.
 

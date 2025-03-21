@@ -9,7 +9,7 @@
 <p align="center"><i>"Finally, a tool that makes screen sessions as simple as they should be!"</i></p>
 
 <div align="center">
-  <strong>🔰 New to terminal sessions?</strong> <a href="#new-to-terminal-sessions">Click here to learn the basics first →</a>
+  <strong>🔰 New to terminal sessions?</strong> <a href="#terminal-sessions">Click here to learn the basics first →</a>
 </div>
 
 <p align="center">
@@ -44,33 +44,6 @@ s kill my-project
 - When you run `s` you'll see a clean table of all sessions
 - `s my-project` smartly attaches to existing sessions or confirms before creating new ones
 - Standard screen shortcuts work inside sessions
-
-<a name="what-are-terminal-sessions"></a>
-
-## What are Terminal Sessions?
-
-Terminal sessions (via tools like `screen` or `tmux`) let you:
-
-- **Keep processes running** even after you disconnect from SSH or close your terminal
-- **Resume your work** exactly where you left off
-- **Run multiple terminal windows** within a single connection
-- **Share terminal sessions** with teammates for collaboration
-
-If you're using SSH to connect to servers or running long processes that you don't want to lose when your connection drops, terminal sessions are essential.
-
-<a name="new-to-terminal-sessions"></a>
-
-## New to Terminal Sessions?
-
-If you've never used terminal sessions before, here's what you can do once you're inside a session:
-
-- **Run commands that continue even if you disconnect** - Start long processes and they'll keep running after you close your terminal
-- **Create multiple terminal windows** (Ctrl+A, C) - Work in different contexts without opening new terminals
-- **Switch between windows** (Ctrl+A, 0-9) - Toggle between your windows like tabs
-- **Disconnect and reconnect later** exactly where you left off (Ctrl+A, D to detach)
-- **Get help anytime** - Press Ctrl+A, ? for the complete help menu
-
-`s` makes all of this ridiculously simple by providing an intuitive interface to these powerful features.
 
 ## Why `s` Exists
 
@@ -107,6 +80,33 @@ The standard Linux `screen` utility is powerful but notoriously difficult to use
 > "This tiny tool saves me at least 15 minutes of frustration every day."
 
 > "I installed this on our entire team's machines. Everyone loves it."
+
+<a name="terminal-sessions"></a>
+
+## Terminal Sessions Explained
+
+### What are Terminal Sessions?
+
+Terminal sessions (via tools like `screen` or `tmux`) let you:
+
+- **Keep processes running** even after you disconnect from SSH or close your terminal
+- **Resume your work** exactly where you left off
+- **Run multiple terminal windows** within a single connection
+- **Share terminal sessions** with teammates for collaboration
+
+If you're using SSH to connect to servers or running long processes that you don't want to lose when your connection drops, terminal sessions are essential.
+
+### New to Terminal Sessions?
+
+If you've never used terminal sessions before, here's what you can do once you're inside a session:
+
+- **Run commands that continue even if you disconnect** - Start long processes and they'll keep running after you close your terminal
+- **Create multiple terminal windows** (Ctrl+A, C) - Work in different contexts without opening new terminals
+- **Switch between windows** (Ctrl+A, 0-9) - Toggle between your windows like tabs
+- **Disconnect and reconnect later** exactly where you left off (Ctrl+A, D to detach)
+- **Get help anytime** - Press Ctrl+A, ? for the complete help menu
+
+`s` makes all of this ridiculously simple by providing an intuitive interface to these powerful features.
 
 ## <a name="installation"></a>Installation
 

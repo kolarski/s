@@ -182,27 +182,46 @@
           <div
             class="bg-terminal-black rounded-xl overflow-hidden shadow-xl mb-12"
           >
-            <div class="bg-terminal-highlight p-4 rounded-t-xl">
-              <h3 class="text-xl font-semibold flex items-center">
-                <i class="far fa-clock mr-2"></i> Try It in 10 Seconds
-              </h3>
+            <div
+              class="bg-terminal-highlight rounded-t-xl p-3 flex items-center"
+            >
+              <div class="flex space-x-2">
+                <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+              </div>
+              <div class="ml-4 text-gray-400 text-sm">Try It in 10 Seconds</div>
             </div>
-            <div class="p-6 code-block text-sm md:text-base">
-              <pre class="text-gray-300">
+            <div class="p-6 font-mono text-sm md:text-base">
+              <pre class="whitespace-pre overflow-x-auto text-gray-300">
 <span class="text-gray-500"># 1. Install</span>
-<span class="text-yellow-400">curl -fsSL https://raw.githubusercontent.com/kolarski/s/master/install.sh | bash</span>
+<span class="text-green-500">alex@server</span>:<span class="text-blue-400">~</span>$ <span class="text-yellow-400">curl -fsSL https://raw.githubusercontent.com/kolarski/s/master/install.sh | bash</span>
 
-<span class="text-gray-500"># 2. List sessions</span>
-<span class="text-yellow-400">s</span>
+<span class="text-gray-500"># 2. Check for existing sessions</span>
+<span class="text-green-500">alex@server</span>:<span class="text-blue-400">~</span>$ <span class="text-yellow-400">s</span>
+No active screen sessions.
+To create a new session, run: s &lt;session-name&gt;
 
-<span class="text-gray-500"># 3. Create/attach to a session</span>
-<span class="text-yellow-400">s my-project</span>
+<span class="text-gray-500"># 3. Create a new session</span>
+<span class="text-green-500">alex@server</span>:<span class="text-blue-400">~</span>$ <span class="text-yellow-400">s my-project</span>
+Creating new session 'my-project'...
 
-<span class="text-gray-500"># 4. Detach when done (standard screen command)</span>
+<span class="text-gray-500"># 4. Do some work, then detach when needed (standard screen command)</span>
 <span class="text-yellow-400">Ctrl+A, then D</span>
 
-<span class="text-gray-500"># 5. Kill a session when completely finished</span>
-<span class="text-yellow-400">s kill my-project</span>
+<span class="text-gray-500"># 5. List sessions (notice your session is now visible)</span>
+<span class="text-green-500">alex@server</span>:<span class="text-blue-400">~</span>$ <span class="text-yellow-400">s</span>
+<span class="text-gray-400">ID              NAME                           CREATED AT          </span>
+<span class="text-gray-400">-----------------------------------------------------------------</span>
+1372328         my-project                     21.03.2025 13:16:53 
+
+<span class="text-gray-500"># 6. Reattach to your session</span>
+<span class="text-green-500">alex@server</span>:<span class="text-blue-400">~</span>$ <span class="text-yellow-400">s my-project</span>
+Attaching to session 'my-project'...
+
+<span class="text-gray-500"># 7. When completely finished, kill the session</span>
+<span class="text-green-500">alex@server</span>:<span class="text-blue-400">~</span>$ <span class="text-yellow-400">s kill my-project</span>
+Session 'my-project' terminated.
 </pre>
             </div>
           </div>
@@ -217,7 +236,10 @@
                   ></i>
                   <span
                     >When you run
-                    <code class="bg-terminal-black px-2 py-1 rounded">s</code>
+                    <code
+                      class="bg-terminal-highlight px-2 py-0.5 rounded font-mono"
+                      >s</code
+                    >
                     you'll see a clean table of all sessions</span
                   >
                 </li>
@@ -226,7 +248,8 @@
                     class="fas fa-check-circle text-terminal-green mt-1 mr-2"
                   ></i>
                   <span
-                    ><code class="bg-terminal-black px-2 py-1 rounded"
+                    ><code
+                      class="bg-terminal-highlight px-2 py-0.5 rounded font-mono"
                       >s my-project</code
                     >
                     smartly attaches to existing sessions or confirms before
@@ -636,7 +659,10 @@
                 <ul class="list-disc list-inside text-gray-300 pl-4">
                   <li>
                     Linux
-                    <code class="bg-terminal-black px-1 rounded">screen</code>
+                    <code
+                      class="bg-terminal-highlight px-2 py-0.5 rounded font-mono"
+                      >screen</code
+                    >
                     command must be installed
                   </li>
                   <li>Compatible with Linux and macOS</li>

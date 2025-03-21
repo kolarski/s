@@ -27,17 +27,31 @@
 # 1. Install
 curl -fsSL https://raw.githubusercontent.com/kolarski/s/master/install.sh | bash
 
-# 2. List sessions
+# 2. Check for existing sessions
 s
+No active screen sessions.
+To create a new session, run: s <session-name>
 
-# 3. Create/attach to a session
+# 3. Create a new session
 s my-project
+Creating new session 'my-project'...
 
-# 4. Detach when done (standard screen command)
+# 4. Do some work, then detach when needed (standard screen command)
 Ctrl+A, then D
 
-# 5. Kill a session when completely finished
+# 5. List sessions (notice your session is now visible)
+s
+ID              NAME                           CREATED AT
+-----------------------------------------------------------------
+1372328         my-project                     21.03.2025 13:16:53
+
+# 6. Reattach to your session
+s my-project
+Attaching to session 'my-project'...
+
+# 7. When completely finished, kill the session
 s kill my-project
+Session 'my-project' terminated.
 ```
 
 #### What to expect:

@@ -1,7 +1,5 @@
-<p align="center">
-  <span style="font-size: 100px;">🖥️</span><br>
-  <span style="font-size: 50px;">⚡ <b>s</b> ⚡</span>
-</p>
+<h1 align="center">🖥️</h1>
+<h2 align="center">⚡ <b>s</b> ⚡</h2>
 
 # s - Terminal Sessions Made Simple
 

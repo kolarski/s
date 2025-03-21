@@ -26,7 +26,7 @@ With `s`, you can harness the power of `screen` without the cognitive overhead o
 Install or upgrade to the latest version using our installation script:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/yourusername/s/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/kolarski/s/main/install.sh | bash
 ```
 
 This script will:
@@ -41,7 +41,7 @@ This script will:
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/s.git
+git clone https://github.com/kolarski/s.git
 cd s
 
 # Build and install

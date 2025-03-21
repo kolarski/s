@@ -1,5 +1,6 @@
 <p align="center">
-  <img src="assets/logo.png" width="200" alt="s - Terminal Sessions Made Simple">
+  <span style="font-size: 100px;">🖥️</span><br>
+  <span style="font-size: 50px;">⚡ <b>s</b> ⚡</span>
 </p>
 
 # s - Terminal Sessions Made Simple

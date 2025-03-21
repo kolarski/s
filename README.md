@@ -24,14 +24,16 @@ If you're using SSH to connect to servers or running long processes that you don
 The standard Linux `screen` utility is powerful but notoriously difficult to use:
 
 - **For newcomers**: Steep learning curve with complex commands and unintuitive syntax
-- **For experienced users**: Frustration with having to remember cryptic commands like `screen -r 1234.pts-0.hostname`
+- **For experienced users**: Common frustrations that shift focus from your work:
+  - Multi-step commands to attach to already-attached sessions
+  - Having to recall specific syntax when you need to manage sessions
 - **For everyone**: Messy session lists, accidental duplicate sessions, and complicated management
 
-**You're not alone.** Thousands of developers waste precious time on these frustrations every day or avoid terminal sessions altogether due to their complexity.
+**You're not alone.** Thousands of developers wish for a simpler way to handle these tasks without the cognitive overhead.
 
 ## The Solution: `s`
 
-`s` is a minimalist CLI tool that makes terminal session management **dead simple** while keeping all the power of `screen` that you actually need.
+`s` is a minimalist wrapper around `screen` that makes terminal session management **dead simple** while keeping all the power of the original tool that you actually need.
 
 ### ⏱️ Try It in 10 Seconds
 
@@ -104,6 +106,14 @@ The script intelligently:
 - Downloads the appropriate binary
 - Installs to the correct location
 - Adds to your PATH if needed
+
+### Manual Binary Download
+
+You can also download the pre-compiled binary directly from the [GitHub releases page](https://github.com/kolarski/s/releases):
+
+1. Download the appropriate binary for your system (Linux or macOS)
+2. Make it executable: `chmod +x s-linux-amd64` or `chmod +x s-macos-amd64`
+3. Move it to a directory in your PATH: `mv s-linux-amd64 /usr/local/bin/s` or `mv s-macos-amd64 /usr/local/bin/s`
 
 ### From Source
 

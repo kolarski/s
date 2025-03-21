@@ -7,7 +7,7 @@
   <a href="https://kolarski.github.io/s/"><img src="https://img.shields.io/badge/Website-Visit%20Now-blue" alt="Website"></a>
 </p>
 
-<p align="center"><i>"Finally, a tool that makes screen sessions as simple as they should be!"</i></p>
+<p align="center"><i>s is a minimalist wrapper around screen that makes terminal session management dead simple while keeping all the power of the original tool that you actually need.</i></p>
 
 <div align="center">
   <strong>🔰 New to terminal sessions?</strong> <a href="#terminal-sessions">Click here to learn the basics first →</a>

@@ -8,16 +8,26 @@
 
 <p align="center"><i>"Finally, a tool that makes screen sessions as simple as they should be!"</i></p>
 
+## What are Terminal Sessions?
+
+Terminal sessions (via tools like `screen` or `tmux`) let you:
+
+- **Keep processes running** even after you disconnect from SSH or close your terminal
+- **Resume your work** exactly where you left off
+- **Run multiple terminal windows** within a single connection
+- **Share terminal sessions** with teammates for collaboration
+
+If you're using SSH to connect to servers or running long processes that you don't want to lose when your connection drops, terminal sessions are essential.
+
 ## The Problem
 
-If you've ever used the Linux `screen` command, you know the experience:
+The standard Linux `screen` utility is powerful but notoriously difficult to use:
 
-- Struggling to remember cryptic commands: `screen -list`, `screen -r 1234.pts-0.hostname`
-- Hunting through messy session lists to find your work
-- Accidentally creating multiple sessions when you meant to attach to existing ones
-- Fighting with detached sessions and complicated syntax
+- **For newcomers**: Steep learning curve with complex commands and unintuitive syntax
+- **For experienced users**: Frustration with having to remember cryptic commands like `screen -r 1234.pts-0.hostname`
+- **For everyone**: Messy session lists, accidental duplicate sessions, and complicated management
 
-**You're not alone.** Thousands of developers waste precious time on these frustrations every day.
+**You're not alone.** Thousands of developers waste precious time on these frustrations every day or avoid terminal sessions altogether due to their complexity.
 
 ## The Solution: `s`
 
@@ -48,6 +58,14 @@ s kill my-project
 - `s my-project` smartly attaches to existing sessions or confirms before creating new ones
 - Standard screen shortcuts work inside sessions
 
+#### New to terminal sessions? Once inside a session, you can:
+
+- Run commands that continue even if you disconnect
+- Create multiple terminal windows (Ctrl+A, C)
+- Switch between windows (Ctrl+A, 0-9)
+- Disconnect and reconnect later exactly where you left off
+- For more commands, press Ctrl+A, ? for the help menu
+
 ## Core Commands You'll Use Daily
 
 | Task                       | Command       | What it Does                                     |
@@ -63,10 +81,6 @@ s kill my-project
 - **Smart Context Awareness**: Creates or attaches based on what you need
 - **Increased Productivity**: Save ~5-10 seconds on every session interaction (adds up to hours saved!)
 - **Designed for Real Workflows**: Built by developers for actual day-to-day usage patterns
-
-<p align="center">
-  <img src="https://via.placeholder.com/600x300?text=Screenshot+of+s+in+action" alt="s in action" width="600">
-</p>
 
 ## What Users Say
 

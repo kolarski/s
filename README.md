@@ -26,27 +26,27 @@ If you've ever used the Linux `screen` command, you know the experience:
 ### ⏱️ Try It in 10 Seconds
 
 ```bash
-# Install with one command
+# 1. Install
 curl -fsSL https://raw.githubusercontent.com/kolarski/s/master/install.sh | bash
 
-# List all sessions
+# 2. List sessions
 s
-# You'll see something like this:
-ID              NAME                           CREATED AT
------------------------------------------------------------------
-1372328         my-background-task             21.03.2025 13:16:53
 
-# Create or attach to a session - that's it!
+# 3. Create/attach to a session
 s my-project
-# Smart behavior: automatically attaches if the session exists,
-# or asks for confirmation to create a new one if it doesn't
 
-# To detach from a session (return to your regular terminal)
+# 4. Detach when done (standard screen command)
 Ctrl+A, then D
 
-# Kill a session when you're done with it
+# 5. Kill a session when completely finished
 s kill my-project
 ```
+
+#### What to expect:
+
+- When you run `s` you'll see a clean table of all sessions
+- `s my-project` smartly attaches to existing sessions or confirms before creating new ones
+- Standard screen shortcuts work inside sessions
 
 ## Core Commands You'll Use Daily
 

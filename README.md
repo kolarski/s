@@ -47,15 +47,15 @@ s kill my-project
 
 ## Why `s` Exists
 
-The standard Linux `screen` utility is powerful but notoriously difficult to use:
+The Linux `screen` utility is an incredibly powerful and versatile tool with a rich feature set developed over decades. While indispensable for server management and remote work, its depth comes with complexity that can impact everyday workflows:
 
-- **For newcomers**: Steep learning curve with complex commands and unintuitive syntax
-- **For experienced users**: Common frustrations that shift focus from your work:
-  - Multi-step commands to attach to already-attached sessions
-  - Having to recall specific syntax when you need to manage sessions
-- **For everyone**: Messy session lists, accidental duplicate sessions, and complicated management
+- Commands and flags that are challenging to remember when you just need to quickly manage sessions
+- Multi-step processes required for common tasks like reattaching to already-attached sessions
+- Feature-rich interface where many advanced capabilities are rarely used but add complexity
+- Session naming and management that can become unwieldy as you accumulate sessions
+- Command syntax that requires precise recall when you're focused on your actual work
 
-**You're not alone.** Thousands of developers wish for a simpler way to handle these tasks without the cognitive overhead.
+`s` was created out of respect for `screen`'s capabilities while acknowledging that developers often need a streamlined interface for their most common terminal session tasks. It preserves all the power of `screen` but provides a simplified command layer for day-to-day usage.
 
 ## Core Commands You'll Use Daily
 

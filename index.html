@@ -133,8 +133,134 @@
         </div>
       </header>
 
-      <!-- What & Why Section -->
+      <!-- Solution Section (moved up) -->
       <section class="py-16 px-6 md:px-12 lg:px-24 bg-terminal-gray">
+        <div class="max-w-5xl mx-auto">
+          <div class="text-center mb-12">
+            <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+              <span class="text-terminal-green font-mono">s</span> is a
+              minimalist wrapper around
+              <span class="font-mono">screen</span> that makes terminal session
+              management <strong>dead simple</strong> while keeping all the
+              power of the original tool that you actually need.
+            </p>
+
+            <div
+              class="mt-8 p-6 bg-terminal-highlight rounded-xl border-l-4 border-terminal-green mx-auto max-w-3xl"
+            >
+              <p class="text-lg italic text-gray-300">
+                "<span class="text-terminal-green font-mono">s</span> was
+                created out of respect for
+                <span class="font-mono">screen</span>'s capabilities while
+                acknowledging that developers often need a streamlined interface
+                for their most common terminal session tasks. It preserves all
+                the power of <span class="font-mono">screen</span> but provides
+                a simplified command layer for day-to-day usage."
+              </p>
+            </div>
+          </div>
+
+          <div
+            class="bg-terminal-black rounded-xl overflow-hidden shadow-xl mb-12"
+          >
+            <div class="bg-terminal-highlight p-4 rounded-t-xl">
+              <h3 class="text-xl font-semibold flex items-center">
+                <i class="far fa-clock mr-2"></i> Try It in 10 Seconds
+              </h3>
+            </div>
+            <div class="p-6 code-block text-sm md:text-base">
+              <pre class="text-gray-300">
+<span class="text-gray-500"># 1. Install</span>
+<span class="text-yellow-400">curl -fsSL https://raw.githubusercontent.com/kolarski/s/master/install.sh | bash</span>
+
+<span class="text-gray-500"># 2. List sessions</span>
+<span class="text-yellow-400">s</span>
+
+<span class="text-gray-500"># 3. Create/attach to a session</span>
+<span class="text-yellow-400">s my-project</span>
+
+<span class="text-gray-500"># 4. Detach when done (standard screen command)</span>
+<span class="text-yellow-400">Ctrl+A, then D</span>
+
+<span class="text-gray-500"># 5. Kill a session when completely finished</span>
+<span class="text-yellow-400">s kill my-project</span>
+</pre>
+            </div>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-8 mb-12">
+            <div class="bg-terminal-black p-6 rounded-xl">
+              <h3 class="text-xl font-bold mb-4">What to expect:</h3>
+              <ul class="space-y-3 text-gray-300">
+                <li class="flex">
+                  <i
+                    class="fas fa-check-circle text-terminal-green mt-1 mr-2"
+                  ></i>
+                  <span
+                    >When you run
+                    <code class="bg-terminal-black px-2 py-1 rounded">s</code>
+                    you'll see a clean table of all sessions</span
+                  >
+                </li>
+                <li class="flex">
+                  <i
+                    class="fas fa-check-circle text-terminal-green mt-1 mr-2"
+                  ></i>
+                  <span
+                    ><code class="bg-terminal-black px-2 py-1 rounded"
+                      >s my-project</code
+                    >
+                    smartly attaches to existing sessions or confirms before
+                    creating new ones</span
+                  >
+                </li>
+                <li class="flex">
+                  <i
+                    class="fas fa-check-circle text-terminal-green mt-1 mr-2"
+                  ></i>
+                  <span>Standard screen shortcuts work inside sessions</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="bg-terminal-black p-6 rounded-xl">
+              <h3 class="text-xl font-bold mb-4">
+                New to terminal sessions? Once inside a session, you can:
+              </h3>
+              <ul class="space-y-3 text-gray-300">
+                <li class="flex">
+                  <i class="fas fa-terminal text-terminal-green mt-1 mr-2"></i>
+                  <span>Run commands that continue even if you disconnect</span>
+                </li>
+                <li class="flex">
+                  <i class="fas fa-terminal text-terminal-green mt-1 mr-2"></i>
+                  <span>Create multiple terminal windows (Ctrl+A, C)</span>
+                </li>
+                <li class="flex">
+                  <i class="fas fa-terminal text-terminal-green mt-1 mr-2"></i>
+                  <span>Switch between windows (Ctrl+A, 0-9)</span>
+                </li>
+                <li class="flex">
+                  <i class="fas fa-terminal text-terminal-green mt-1 mr-2"></i>
+                  <span
+                    >Disconnect and reconnect later exactly where you left
+                    off</span
+                  >
+                </li>
+                <li class="flex">
+                  <i class="fas fa-terminal text-terminal-green mt-1 mr-2"></i>
+                  <span
+                    >For more commands, press Ctrl+A, ? for the help menu</span
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- What & Why Section (moved down) -->
+      <section class="py-16 px-6 md:px-12 lg:px-24 bg-terminal-black">
         <div class="max-w-5xl mx-auto">
           <div class="grid md:grid-cols-2 gap-12">
             <div>
@@ -228,173 +354,6 @@
               You're not alone. Thousands of developers wish for a simpler way
               to handle these tasks without the cognitive overhead.
             </p>
-          </div>
-        </div>
-      </section>
-
-      <!-- Solution Section -->
-      <section class="py-16 px-6 md:px-12 lg:px-24 bg-terminal-black">
-        <div class="max-w-5xl mx-auto">
-          <div class="text-center mb-12">
-            <h2 class="text-3xl md:text-4xl font-bold mb-4">
-              The Solution: <span class="text-terminal-green">s</span>
-            </h2>
-            <p class="text-xl text-gray-300 max-w-3xl mx-auto">
-              <span class="text-terminal-green font-mono">s</span> is a
-              minimalist wrapper around
-              <span class="font-mono">screen</span> that makes terminal session
-              management <strong>dead simple</strong> while keeping all the
-              power of the original tool that you actually need.
-            </p>
-          </div>
-
-          <div
-            class="bg-terminal-gray rounded-xl overflow-hidden shadow-xl mb-12"
-          >
-            <div class="bg-terminal-highlight p-4 rounded-t-xl">
-              <h3 class="text-xl font-semibold flex items-center">
-                <i class="far fa-clock mr-2"></i> Try It in 10 Seconds
-              </h3>
-            </div>
-            <div class="p-6 code-block text-sm md:text-base">
-              <pre class="text-gray-300">
-<span class="text-gray-500"># 1. Install</span>
-<span class="text-yellow-400">curl -fsSL https://raw.githubusercontent.com/kolarski/s/master/install.sh | bash</span>
-
-<span class="text-gray-500"># 2. List sessions</span>
-<span class="text-yellow-400">s</span>
-
-<span class="text-gray-500"># 3. Create/attach to a session</span>
-<span class="text-yellow-400">s my-project</span>
-
-<span class="text-gray-500"># 4. Detach when done (standard screen command)</span>
-<span class="text-yellow-400">Ctrl+A, then D</span>
-
-<span class="text-gray-500"># 5. Kill a session when completely finished</span>
-<span class="text-yellow-400">s kill my-project</span>
-</pre>
-            </div>
-          </div>
-
-          <div class="grid md:grid-cols-2 gap-8 mb-12">
-            <div class="bg-terminal-highlight p-6 rounded-xl">
-              <h3 class="text-xl font-bold mb-4">What to expect:</h3>
-              <ul class="space-y-3 text-gray-300">
-                <li class="flex">
-                  <i
-                    class="fas fa-check-circle text-terminal-green mt-1 mr-2"
-                  ></i>
-                  <span
-                    >When you run
-                    <code class="bg-terminal-gray px-2 py-1 rounded">s</code>
-                    you'll see a clean table of all sessions</span
-                  >
-                </li>
-                <li class="flex">
-                  <i
-                    class="fas fa-check-circle text-terminal-green mt-1 mr-2"
-                  ></i>
-                  <span
-                    ><code class="bg-terminal-gray px-2 py-1 rounded"
-                      >s my-project</code
-                    >
-                    smartly attaches to existing sessions or confirms before
-                    creating new ones</span
-                  >
-                </li>
-                <li class="flex">
-                  <i
-                    class="fas fa-check-circle text-terminal-green mt-1 mr-2"
-                  ></i>
-                  <span>Standard screen shortcuts work inside sessions</span>
-                </li>
-              </ul>
-            </div>
-
-            <div class="bg-terminal-highlight p-6 rounded-xl">
-              <h3 class="text-xl font-bold mb-4">
-                New to terminal sessions? Once inside a session, you can:
-              </h3>
-              <ul class="space-y-3 text-gray-300">
-                <li class="flex">
-                  <i class="fas fa-terminal text-terminal-green mt-1 mr-2"></i>
-                  <span>Run commands that continue even if you disconnect</span>
-                </li>
-                <li class="flex">
-                  <i class="fas fa-terminal text-terminal-green mt-1 mr-2"></i>
-                  <span>Create multiple terminal windows (Ctrl+A, C)</span>
-                </li>
-                <li class="flex">
-                  <i class="fas fa-terminal text-terminal-green mt-1 mr-2"></i>
-                  <span>Switch between windows (Ctrl+A, 0-9)</span>
-                </li>
-                <li class="flex">
-                  <i class="fas fa-terminal text-terminal-green mt-1 mr-2"></i>
-                  <span
-                    >Disconnect and reconnect later exactly where you left
-                    off</span
-                  >
-                </li>
-                <li class="flex">
-                  <i class="fas fa-terminal text-terminal-green mt-1 mr-2"></i>
-                  <span
-                    >For more commands, press Ctrl+A, ? for the help menu</span
-                  >
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="bg-terminal-gray rounded-xl overflow-hidden shadow-xl">
-            <div class="bg-terminal-highlight p-4 rounded-t-xl">
-              <h3 class="text-xl font-semibold">
-                Core Commands You'll Use Daily
-              </h3>
-            </div>
-            <div class="overflow-x-auto">
-              <table class="min-w-full">
-                <thead>
-                  <tr class="bg-terminal-highlight text-left">
-                    <th class="px-6 py-4 text-gray-300">Task</th>
-                    <th class="px-6 py-4 text-gray-300">Command</th>
-                    <th class="px-6 py-4 text-gray-300">What it Does</th>
-                  </tr>
-                </thead>
-                <tbody class="divide-y divide-terminal-highlight">
-                  <tr>
-                    <td class="px-6 py-4">List all sessions</td>
-                    <td class="px-6 py-4">
-                      <code class="bg-terminal-highlight px-2 py-1 rounded"
-                        >s</code
-                      >
-                    </td>
-                    <td class="px-6 py-4">
-                      Shows a clean, human-readable table
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="px-6 py-4">Create/attach to a session</td>
-                    <td class="px-6 py-4">
-                      <code class="bg-terminal-highlight px-2 py-1 rounded"
-                        >s name</code
-                      >
-                    </td>
-                    <td class="px-6 py-4">
-                      Creates if it doesn't exist, attaches if it does
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="px-6 py-4">Kill a session</td>
-                    <td class="px-6 py-4">
-                      <code class="bg-terminal-highlight px-2 py-1 rounded"
-                        >s kill name</code
-                      >
-                    </td>
-                    <td class="px-6 py-4">Removes the session</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
           </div>
         </div>
       </section>

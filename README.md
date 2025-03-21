@@ -8,6 +8,10 @@
 
 <p align="center"><i>"Finally, a tool that makes screen sessions as simple as they should be!"</i></p>
 
+<p align="center">
+  <img src="/assets/image.png" alt="s in action - simple terminal session management" width="600">
+</p>
+
 ## What are Terminal Sessions?
 
 Terminal sessions (via tools like `screen` or `tmux`) let you:
@@ -34,6 +38,8 @@ The standard Linux `screen` utility is powerful but notoriously difficult to use
 ## The Solution: `s`
 
 `s` is a minimalist wrapper around `screen` that makes terminal session management **dead simple** while keeping all the power of the original tool that you actually need.
+
+![Example of s in action](example.png)
 
 ### ⏱️ Try It in 10 Seconds
 

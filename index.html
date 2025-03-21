@@ -115,54 +115,19 @@
               </div>
               <div class="ml-4 text-gray-400 text-sm">Terminal</div>
             </div>
-            <div
-              class="p-6 font-mono text-sm md:text-base overflow-x-auto whitespace-pre-wrap"
-            >
-              <div class="mb-2">
-                <span class="text-green-500">alex@server</span>:<span
-                  class="text-blue-400"
-                  >~</span
-                >$ s
-              </div>
-              <div class="mb-4">
-                <table class="min-w-full">
-                  <thead>
-                    <tr class="text-gray-400 border-b border-gray-700">
-                      <th class="py-2 text-left">ID</th>
-                      <th class="py-2 text-left">Name</th>
-                      <th class="py-2 text-left">Status</th>
-                      <th class="py-2 text-left">Created</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td class="py-1">1</td>
-                      <td class="py-1">api-server</td>
-                      <td class="py-1">
-                        <span class="text-terminal-green">Running</span>
-                      </td>
-                      <td class="py-1">2 days ago</td>
-                    </tr>
-                    <tr>
-                      <td class="py-1">2</td>
-                      <td class="py-1">db-backup</td>
-                      <td class="py-1">
-                        <span class="text-terminal-green">Running</span>
-                      </td>
-                      <td class="py-1">3 hours ago</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <div class="mb-2">
-                <span class="text-green-500">alex@server</span>:<span
-                  class="text-blue-400"
-                  >~</span
-                >$ s api-server
-              </div>
-              <div class="terminal-cursor">
-                Attaching to session 'api-server'...
-              </div>
+            <div class="p-6 font-mono text-sm md:text-base">
+              <pre
+                class="whitespace-pre overflow-x-auto"
+              ><span class="text-green-500">alex@server</span>:<span class="text-blue-400">~</span>$ s
+
+<span class="text-gray-400">ID              NAME                           CREATED AT          </span>
+<span class="text-gray-400">-----------------------------------------------------------------</span>
+1372328         api-server                     21.03.2025 13:16:53 
+1372329         db-backup                      21.03.2025 15:45:22 
+
+<span class="text-green-500">alex@server</span>:<span class="text-blue-400">~</span>$ s api-server
+
+<span class="terminal-cursor">Attaching to session 'api-server'...</span></pre>
             </div>
           </div>
         </div>

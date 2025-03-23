@@ -212,6 +212,13 @@
                 <i class="fab fa-github mr-2" aria-hidden="true"></i> View on
                 GitHub
               </a>
+              <a
+                href="#changelog"
+                class="bg-terminal-highlight hover:bg-gray-700 text-terminal-text font-bold py-3 px-8 rounded-lg transition-all duration-300 flex items-center"
+                aria-label="View changelog"
+              >
+                <i class="fas fa-history mr-2" aria-hidden="true"></i> Changelog
+              </a>
             </div>
           </div>
 
@@ -755,7 +762,52 @@ Session 'my-project' terminated.
             </div>
           </div>
 
-          <div class="grid md:grid-cols-2 gap-8">
+          <div class="space-y-8">
+            <div class="bg-terminal-gray rounded-xl overflow-hidden shadow-xl">
+              <div class="bg-terminal-highlight p-4 rounded-t-xl">
+                <h3 class="text-xl font-semibold">Arch Linux (AUR)</h3>
+              </div>
+              <div class="p-6">
+                <p class="text-gray-300 mb-4">
+                  If you're using Arch Linux or an Arch-based distribution, you
+                  can install
+                  <code class="bg-terminal-highlight px-2 py-0.5 rounded"
+                    >s-screen</code
+                  >
+                  from the AUR using your preferred helper:
+                </p>
+                <div class="code-block mb-4">
+                  <pre class="text-gray-300">
+<span class="text-gray-400"># Using yay</span>
+<span class="text-yellow-400">yay -S s-screen</span>
+
+<span class="text-gray-400"># Using paru</span>
+<span class="text-yellow-400">paru -S s-screen</span>
+
+<span class="text-gray-400"># Using pamac (Manjaro)</span>
+<span class="text-yellow-400">pamac install s-screen</span>
+
+<span class="text-gray-400"># Manual AUR installation</span>
+<span class="text-yellow-400">git clone https://aur.archlinux.org/s-screen.git
+cd s-screen
+makepkg -si</span></pre>
+                </div>
+                <p class="text-gray-300">
+                  The package is maintained in the
+                  <a
+                    href="https://aur.archlinux.org/packages/s-screen"
+                    class="text-terminal-green hover:underline"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >AUR as s-screen</a
+                  >. After installation, verify with
+                  <code class="bg-terminal-highlight px-2 py-0.5 rounded"
+                    >s --version</code
+                  >
+                </p>
+              </div>
+            </div>
+
             <div class="bg-terminal-gray rounded-xl overflow-hidden shadow-xl">
               <div class="bg-terminal-highlight p-4 rounded-t-xl">
                 <h3 class="text-xl font-semibold">Manual Binary Download</h3>
@@ -807,30 +859,102 @@ Session 'my-project' terminated.
               <div class="bg-terminal-highlight p-4 rounded-t-xl">
                 <h3 class="text-xl font-semibold">From Source</h3>
               </div>
-              <div class="p-6 code-block">
-                <pre
-                  class="text-gray-300"
-                  aria-label="Source code installation commands"
-                >
-<span class="text-yellow-400">git clone https://github.com/kolarski/s.git</span>
-<span class="text-yellow-400">cd s</span>
-<span class="text-yellow-400">cargo install --path .</span>
-</pre>
+              <div class="p-6">
+                <p class="text-gray-300 mb-4">
+                  For developers who prefer to build from source:
+                </p>
+                <div class="code-block mb-4">
+                  <pre class="text-gray-300">
+<span class="text-yellow-400">git clone https://github.com/kolarski/s.git
+cd s
+cargo install --path .</span></pre>
+                </div>
+                <div class="bg-terminal-highlight p-4 rounded">
+                  <h4 class="font-semibold mb-2">Requirements</h4>
+                  <ul class="list-disc list-inside text-gray-300 pl-4">
+                    <li>Rust toolchain (cargo)</li>
+                    <li>
+                      Linux
+                      <code class="bg-terminal-highlight px-2 py-0.5 rounded"
+                        >screen</code
+                      >
+                      command must be installed
+                    </li>
+                    <li>Compatible with Linux and macOS</li>
+                  </ul>
+                </div>
               </div>
-              <div class="p-4 bg-terminal-highlight">
-                <h4 class="font-semibold mb-2">Requirements</h4>
-                <ul class="list-disc list-inside text-gray-300 pl-4">
-                  <li>
-                    Linux
-                    <code
-                      class="bg-terminal-highlight px-2 py-0.5 rounded font-mono"
-                      >screen</code
-                    >
-                    command must be installed
-                  </li>
-                  <li>Compatible with Linux and macOS</li>
-                </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Changelog Section -->
+      <section
+        id="changelog"
+        class="py-16 px-6 md:px-12 lg:px-24 bg-terminal-black"
+        aria-labelledby="changelog-heading"
+      >
+        <div class="max-w-5xl mx-auto">
+          <div class="text-center mb-12">
+            <h2
+              class="text-3xl md:text-4xl font-bold mb-4"
+              id="changelog-heading"
+            >
+              Changelog
+            </h2>
+            <p class="text-xl text-gray-300">Track the evolution of s</p>
+          </div>
+
+          <div class="space-y-8">
+            <div class="bg-terminal-gray rounded-xl p-6">
+              <div class="flex items-center mb-4">
+                <h3 class="text-2xl font-bold text-terminal-green">v0.1.2</h3>
+                <span class="ml-4 text-gray-400">2025-03-23</span>
               </div>
+              <ul class="space-y-2 text-gray-300">
+                <li class="flex items-start">
+                  <i
+                    class="fas fa-plus-circle text-terminal-green mt-1 mr-2"
+                  ></i>
+                  <span
+                    >Added Arch Linux AUR package support (<code
+                      class="bg-terminal-highlight px-2 py-0.5 rounded"
+                      >yay -S s-screen</code
+                    >)</span
+                  >
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-book text-terminal-green mt-1 mr-2"></i>
+                  <span>Added website documentation link to package</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="bg-terminal-gray rounded-xl p-6">
+              <div class="flex items-center mb-4">
+                <h3 class="text-2xl font-bold text-terminal-green">v0.1.2</h3>
+                <span class="ml-4 text-gray-400">2025-03-21</span>
+              </div>
+              <ul class="space-y-2 text-gray-300">
+                <li class="flex items-start">
+                  <i class="fas fa-cog text-terminal-green mt-1 mr-2"></i>
+                  <span>Automatic releases</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="bg-terminal-gray rounded-xl p-6">
+              <div class="flex items-center mb-4">
+                <h3 class="text-2xl font-bold text-terminal-green">v0.1.1</h3>
+                <span class="ml-4 text-gray-400">2025-03-21</span>
+              </div>
+              <ul class="space-y-2 text-gray-300">
+                <li class="flex items-start">
+                  <i class="fas fa-rocket text-terminal-green mt-1 mr-2"></i>
+                  <span>Initial Release</span>
+                </li>
+              </ul>
             </div>
           </div>
         </div>

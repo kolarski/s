@@ -141,6 +141,23 @@ The script intelligently:
 - Installs to the correct location
 - Adds to your PATH if needed
 
+### Arch Linux (AUR)
+
+If you're using Arch Linux or an Arch-based distribution, you can install `s-screen` from the AUR:
+
+```bash
+# Using yay
+yay -S s-screen
+
+# Using paru
+paru -S s-screen
+
+# Using pamac (Manjaro)
+pamac install s-screen
+```
+
+The package is maintained in the [AUR as s-screen](https://aur.archlinux.org/packages/s-screen).
+
 ### Manual Binary Download
 
 You can also download the pre-compiled binary directly from the [GitHub releases page](https://github.com/kolarski/s/releases):

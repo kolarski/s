@@ -67,9 +67,59 @@ jobs:
           command: build
           args: --release --target ${{ matrix.target }}
 
+      # AppImage creation steps for Linux
+      - name: Create AppImage (Linux only)
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          # Install dependencies
+          sudo apt-get update
+          sudo apt-get install -y imagemagick
+
+          # Install appimagetool
+          sudo wget https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage -O /usr/local/bin/appimagetool
+          sudo chmod +x /usr/local/bin/appimagetool
+
+          # Create AppDir structure
+          mkdir -p AppDir/usr/{bin,share/applications,share/icons/hicolor/256x256/apps}
+
+          # Copy binary
+          cp target/${{ matrix.target }}/release/${{ matrix.artifact_name }} AppDir/usr/bin/
+
+          # Create desktop file
+          cat > AppDir/usr/share/applications/s-screen.desktop << EOF
+          [Desktop Entry]
+          Name=s-screen
+          Exec=s
+          Icon=s-screen
+          Type=Application
+          Categories=Utility;
+          EOF
+
+          # Create AppRun
+          cat > AppDir/AppRun << EOF
+          #!/bin/sh
+          SELF=\$(readlink -f "\$0")
+          HERE=\${SELF%/*}
+          export PATH="\${HERE}/usr/bin:\${PATH}"
+          exec "\${HERE}/usr/bin/s" "\$@"
+          EOF
+          chmod +x AppDir/AppRun
+
+          # Create a simple icon (you should replace this with your actual icon)
+          convert -size 256x256 xc:transparent -font DejaVu-Sans -pointsize 200 -gravity center -draw "text 0,0 'S'" AppDir/usr/share/icons/hicolor/256x256/apps/s-screen.png
+
+          # Generate AppImage
+          ARCH=x86_64 appimagetool AppDir s-screen-${{ github.ref_name }}-x86_64.AppImage
+
       - name: Upload Release Asset
         run: |
           gh release upload ${{ github.ref_name }} \
             ./target/${{ matrix.target }}/release/${{ matrix.artifact_name }}#${{ matrix.asset_name }}
+
+          # Upload AppImage for Linux
+          if [ "${{ matrix.os }}" = "ubuntu-latest" ]; then
+            gh release upload ${{ github.ref_name }} \
+              ./s-screen-${{ github.ref_name }}-x86_64.AppImage
+          fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

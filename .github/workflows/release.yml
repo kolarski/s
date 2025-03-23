@@ -4,10 +4,17 @@ on:
   push:
     tags:
       - "v*"
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Tag to rebuild"
+        required: true
+        default: "v0.1.2"
 
 # Add permissions at the top level
 permissions:
   contents: write # This is needed for creating releases
+  actions: write # This is needed for re-running workflows
 
 jobs:
   release:
@@ -22,15 +29,29 @@ jobs:
 
       - name: Get version from tag
         id: get_version
-        run: echo "VERSION=${GITHUB_REF_NAME#v}" >> $GITHUB_OUTPUT
-
-      - name: Create Release
-        id: create_release
         run: |
-          gh release create "${{ github.ref_name }}" \
-            --title "Release ${{ github.ref_name }}" \
-            --generate-notes
-          echo "upload_url=$(gh api repos/${{ github.repository }}/releases/tags/${{ github.ref_name }} | jq -r .upload_url)" >> $GITHUB_OUTPUT
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "VERSION=${{ github.event.inputs.tag }}" >> $GITHUB_OUTPUT
+          else
+            echo "VERSION=${GITHUB_REF_NAME#v}" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Check if release exists
+        id: check_release
+        run: |
+          TAG="${{ github.event.inputs.tag }}"
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            if ! gh release view "$TAG" &>/dev/null; then
+              gh release create "$TAG" \
+                --title "Release $TAG" \
+                --generate-notes
+            fi
+          else
+            gh release create "${{ github.ref_name }}" \
+              --title "Release ${{ github.ref_name }}" \
+              --generate-notes
+          fi
+          echo "upload_url=$(gh api repos/${{ github.repository }}/releases/tags/${TAG:-${{ github.ref_name }}} | jq -r .upload_url)" >> $GITHUB_OUTPUT
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

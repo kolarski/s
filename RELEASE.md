@@ -63,20 +63,92 @@ version = "0.1.3"  # Update this version
    ```
 
 5. Commit and push changes:
+
    ```bash
    git add PKGBUILD .SRCINFO
    git commit -m "chore: bump version to 0.1.3"
    git push
    ```
 
-## 4. Verify the Update
-
-1. Wait a few minutes for AUR to process the changes
-
-2. Test the package installation:
-
+6. Verify the update:
    ```bash
    yay -S s-screen
+   ```
+
+## 4. Update Homebrew Package
+
+1. Clone the Homebrew tap repository (if not already cloned):
+
+   ```bash
+   git clone https://github.com/kolarski/homebrew-s-screen.git
+   cd homebrew-s-screen
+   ```
+
+2. Download the new release and calculate SHA256:
+
+   ```bash
+   curl -L https://github.com/kolarski/s/archive/v0.1.3.tar.gz -o s-screen-0.1.3.tar.gz
+   sha256sum s-screen-0.1.3.tar.gz
+   ```
+
+3. Update the Formula file (`s-screen.rb`):
+
+   - Update the version number
+   - Update the SHA256 hash
+   - Update any dependencies if needed
+
+   Example:
+
+   ```ruby
+   class SScreen < Formula
+     desc "Terminal Sessions Made Ridiculously Simple"
+     homepage "https://kolarski.github.io/s/"
+     url "https://github.com/kolarski/s/archive/v0.1.3.tar.gz"
+     sha256 "your-new-sha256-hash"
+     version "0.1.3"
+
+     depends_on "rust" => :build
+     depends_on "screen"
+
+     def install
+       system "cargo", "install", "--root", prefix, "--path", "."
+     end
+   end
+   ```
+
+4. Test the formula locally:
+
+   ```bash
+   brew install --build-from-source ./s-screen.rb
+   ```
+
+5. Commit and push changes:
+
+   ```bash
+   git add s-screen.rb
+   git commit -m "chore: bump version to 0.1.3"
+   git push
+   ```
+
+6. Verify the update:
+   ```bash
+   brew update
+   brew upgrade s-screen
+   s --version
+   ```
+
+## 5. Verify the Updates
+
+1. Wait a few minutes for both AUR and Homebrew to process the changes
+
+2. Test both package installations:
+
+   ```bash
+   # AUR
+   yay -S s-screen
+
+   # Homebrew
+   brew upgrade s-screen
    ```
 
 3. Verify the installation:
@@ -84,7 +156,7 @@ version = "0.1.3"  # Update this version
    s --version
    ```
 
-## 5. Troubleshooting
+## 6. Troubleshooting
 
 If you encounter issues:
 
@@ -106,7 +178,7 @@ If you encounter issues:
    makepkg -i
    ```
 
-## 6. Common Issues
+## 7. Common Issues
 
 1. **AUR not showing updates**: Wait 5-10 minutes for AUR to process changes
 
@@ -121,7 +193,7 @@ If you encounter issues:
    - Verify the build process works locally
    - Check for any new dependencies in Cargo.toml
 
-## 7. Best Practices
+## 8. Best Practices
 
 1. Always test the package locally before pushing to AUR
 2. Keep a changelog of your changes
@@ -129,7 +201,7 @@ If you encounter issues:
 4. Test the package on a clean system
 5. Follow semantic versioning (MAJOR.MINOR.PATCH)
 
-## 8. Useful Commands
+## 9. Useful Commands
 
 ```bash
 # Update AUR database

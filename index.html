@@ -437,9 +437,358 @@ Session 'my-project' terminated.
         </div>
       </section>
 
+      <!-- Installation Section -->
+      <section
+        id="install"
+        class="py-16 px-6 md:px-12 lg:px-24 bg-terminal-black"
+        aria-labelledby="installation-heading"
+      >
+        <div class="max-w-5xl mx-auto">
+          <div class="text-center mb-12">
+            <h2
+              class="text-3xl md:text-4xl font-bold mb-4"
+              id="installation-heading"
+            >
+              Installation
+            </h2>
+            <p class="text-xl text-gray-300">Get started in seconds</p>
+          </div>
+
+          <!-- Tabs -->
+          <div class="mb-12">
+            <div class="border-b border-terminal-highlight">
+              <nav class="flex -mb-px" aria-label="Installation methods">
+                <button
+                  onclick="switchTab('quick')"
+                  class="tab-button active px-6 py-3 border-b-2 border-terminal-green text-terminal-green"
+                  data-tab="quick"
+                  data-anchor="install-quick"
+                >
+                  Quick Install
+                </button>
+                <button
+                  onclick="switchTab('homebrew')"
+                  class="tab-button px-6 py-3 border-b-2 border-transparent text-gray-400 hover:text-terminal-green"
+                  data-tab="homebrew"
+                  data-anchor="install-homebrew"
+                >
+                  Homebrew
+                </button>
+                <button
+                  onclick="switchTab('aur')"
+                  class="tab-button px-6 py-3 border-b-2 border-transparent text-gray-400 hover:text-terminal-green"
+                  data-tab="aur"
+                  data-anchor="install-aur"
+                >
+                  AUR
+                </button>
+                <button
+                  onclick="switchTab('manual')"
+                  class="tab-button px-6 py-3 border-b-2 border-transparent text-gray-400 hover:text-terminal-green"
+                  data-tab="manual"
+                  data-anchor="install-manual"
+                >
+                  Manual
+                </button>
+                <button
+                  onclick="switchTab('source')"
+                  class="tab-button px-6 py-3 border-b-2 border-transparent text-gray-400 hover:text-terminal-green"
+                  data-tab="source"
+                  data-anchor="install-source"
+                >
+                  From Source
+                </button>
+              </nav>
+            </div>
+
+            <!-- Tab Content -->
+            <div class="mt-8">
+              <!-- Quick Install Tab -->
+              <div id="quick-tab" class="tab-content active">
+                <div
+                  class="bg-terminal-gray rounded-xl overflow-hidden shadow-xl"
+                >
+                  <div
+                    class="bg-terminal-highlight p-4 rounded-t-xl flex items-center"
+                  >
+                    <i
+                      class="fas fa-check-circle text-terminal-green mr-2"
+                      aria-hidden="true"
+                    ></i>
+                    <h3 class="text-xl font-semibold">
+                      Quick Install (Recommended)
+                    </h3>
+                  </div>
+                  <div class="p-6 code-block">
+                    <pre
+                      class="text-gray-300"
+                      aria-label="Quick installation command"
+                    >
+<span class="text-yellow-400">curl -fsSL https://raw.githubusercontent.com/kolarski/s/master/install.sh | bash</span></pre>
+                  </div>
+                  <div class="p-4 bg-terminal-highlight text-sm">
+                    <p class="text-gray-300">The script intelligently:</p>
+                    <ul class="list-disc list-inside text-gray-300 pl-4 mt-2">
+                      <li>Detects your OS</li>
+                      <li>Downloads the appropriate binary</li>
+                      <li>Installs to the correct location</li>
+                      <li>Adds to your PATH if needed</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Homebrew Tab -->
+              <div id="homebrew-tab" class="tab-content hidden">
+                <div
+                  class="bg-terminal-gray rounded-xl overflow-hidden shadow-xl"
+                >
+                  <div class="bg-terminal-highlight p-4 rounded-t-xl">
+                    <h3 class="text-xl font-semibold">
+                      Homebrew (macOS & Linux)
+                    </h3>
+                  </div>
+                  <div class="p-6">
+                    <p class="text-gray-300 mb-4">
+                      If you're using macOS or Linux with Homebrew installed,
+                      you can install
+                      <code class="bg-terminal-highlight px-2 py-0.5 rounded"
+                        >s-screen</code
+                      >
+                      using:
+                    </p>
+                    <div class="code-block mb-4">
+                      <pre class="text-gray-300">
+<span class="text-yellow-400">brew tap kolarski/s-screen && brew install s-screen</span></pre>
+                    </div>
+                    <p class="text-gray-300">
+                      After installation, verify with
+                      <code class="bg-terminal-highlight px-2 py-0.5 rounded"
+                        >s --version</code
+                      >
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- AUR Tab -->
+              <div id="aur-tab" class="tab-content hidden">
+                <div
+                  class="bg-terminal-gray rounded-xl overflow-hidden shadow-xl"
+                >
+                  <div class="bg-terminal-highlight p-4 rounded-t-xl">
+                    <h3 class="text-xl font-semibold">Arch Linux (AUR)</h3>
+                  </div>
+                  <div class="p-6">
+                    <p class="text-gray-300 mb-4">
+                      If you're using Arch Linux or an Arch-based distribution,
+                      you can install
+                      <code class="bg-terminal-highlight px-2 py-0.5 rounded"
+                        >s-screen</code
+                      >
+                      from the AUR using your preferred helper:
+                    </p>
+                    <div class="code-block mb-4">
+                      <pre class="text-gray-300">
+<span class="text-gray-400"># Using yay</span>
+<span class="text-yellow-400">yay -S s-screen</span>
+
+<span class="text-gray-400"># Using paru</span>
+<span class="text-yellow-400">paru -S s-screen</span>
+
+<span class="text-gray-400"># Using pamac (Manjaro)</span>
+<span class="text-yellow-400">pamac install s-screen</span></pre>
+                    </div>
+                    <p class="text-gray-300">
+                      After installation, verify with
+                      <code class="bg-terminal-highlight px-2 py-0.5 rounded"
+                        >s --version</code
+                      >
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Manual Tab -->
+              <div id="manual-tab" class="tab-content hidden">
+                <div
+                  class="bg-terminal-gray rounded-xl overflow-hidden shadow-xl"
+                >
+                  <div class="bg-terminal-highlight p-4 rounded-t-xl">
+                    <h3 class="text-xl font-semibold">
+                      Manual Binary Download
+                    </h3>
+                  </div>
+                  <div class="p-6">
+                    <p class="text-gray-300 mb-4">
+                      You can also download the pre-compiled binary directly
+                      from the
+                      <a
+                        href="https://github.com/kolarski/s/releases"
+                        class="text-terminal-green hover:underline"
+                        >GitHub releases page</a
+                      >:
+                    </p>
+                    <ol
+                      class="list-decimal list-inside text-gray-300 space-y-2 pl-4"
+                    >
+                      <li>
+                        Download the appropriate binary for your system (Linux
+                        or macOS)
+                      </li>
+                      <li>
+                        Make it executable:
+                        <code class="bg-terminal-highlight px-2 py-0.5 rounded"
+                          >chmod +x s-linux-amd64</code
+                        >
+                        or
+                        <code class="bg-terminal-highlight px-2 py-0.5 rounded"
+                          >chmod +x s-macos-amd64</code
+                        >
+                      </li>
+                      <li>
+                        Move it to a directory in your PATH:
+                        <code class="bg-terminal-highlight px-2 py-0.5 rounded"
+                          >mv s-linux-amd64 /usr/local/bin/s</code
+                        >
+                        or
+                        <code class="bg-terminal-highlight px-2 py-0.5 rounded"
+                          >mv s-macos-amd64 /usr/local/bin/s</code
+                        >
+                      </li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Source Tab -->
+              <div id="source-tab" class="tab-content hidden">
+                <div
+                  class="bg-terminal-gray rounded-xl overflow-hidden shadow-xl"
+                >
+                  <div class="bg-terminal-highlight p-4 rounded-t-xl">
+                    <h3 class="text-xl font-semibold">From Source</h3>
+                  </div>
+                  <div class="p-6">
+                    <p class="text-gray-300 mb-4">
+                      For developers who prefer to build from source:
+                    </p>
+                    <div class="code-block mb-4">
+                      <pre class="text-gray-300">
+<span class="text-yellow-400">git clone https://github.com/kolarski/s.git
+cd s
+cargo install --path .</span></pre>
+                    </div>
+                    <div class="bg-terminal-highlight p-4 rounded">
+                      <h4 class="font-semibold mb-2">Requirements</h4>
+                      <ul class="list-disc list-inside text-gray-300 pl-4">
+                        <li>Rust toolchain (cargo)</li>
+                        <li>
+                          Linux
+                          <code
+                            class="bg-terminal-highlight px-2 py-0.5 rounded"
+                            >screen</code
+                          >
+                          command must be installed
+                        </li>
+                        <li>Compatible with Linux and macOS</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <script>
+            function switchTab(tabId) {
+              // Hide all tab contents
+              document.querySelectorAll(".tab-content").forEach((tab) => {
+                tab.classList.add("hidden");
+              });
+
+              // Show selected tab content
+              document
+                .getElementById(tabId + "-tab")
+                .classList.remove("hidden");
+
+              // Update tab button styles
+              document.querySelectorAll(".tab-button").forEach((button) => {
+                button.classList.remove(
+                  "border-terminal-green",
+                  "text-terminal-green"
+                );
+                button.classList.add("text-gray-400", "border-transparent");
+              });
+
+              // Style active tab button
+              const activeButton = document.querySelector(
+                `[data-tab="${tabId}"]`
+              );
+              activeButton.classList.remove(
+                "text-gray-400",
+                "border-transparent"
+              );
+              activeButton.classList.add(
+                "border-terminal-green",
+                "text-terminal-green"
+              );
+
+              // Update URL hash and scroll to the installation section
+              const anchor = activeButton.getAttribute("data-anchor");
+              history.pushState(null, null, "#" + anchor);
+
+              // Scroll to the installation section
+              const installSection = document.getElementById("install");
+              if (installSection) {
+                installSection.scrollIntoView({
+                  behavior: "smooth",
+                  block: "start",
+                });
+              }
+            }
+
+            // Handle initial load and back/forward navigation
+            function handleHash() {
+              const hash = window.location.hash.replace("#", "");
+              if (hash.startsWith("install-")) {
+                const tabId = hash.replace("install-", "");
+                const tabButton = document.querySelector(
+                  `[data-tab="${tabId}"]`
+                );
+                if (tabButton) {
+                  switchTab(tabId);
+                }
+              }
+            }
+
+            // Listen for hash changes
+            window.addEventListener("hashchange", handleHash);
+
+            // Handle initial load with smooth scroll
+            document.addEventListener("DOMContentLoaded", function () {
+              handleHash();
+              // If there's a hash in the URL, scroll to the installation section
+              if (
+                window.location.hash &&
+                window.location.hash.startsWith("#install-")
+              ) {
+                const installSection = document.getElementById("install");
+                if (installSection) {
+                  installSection.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start",
+                  });
+                }
+              }
+            });
+          </script>
+        </div>
+      </section>
+
       <!-- What & Why Section -->
       <section
-        class="py-16 px-6 md:px-12 lg:px-24 bg-terminal-black"
+        class="py-16 px-6 md:px-12 lg:px-24 bg-terminal-gray"
         aria-labelledby="what-and-why-heading"
       >
         <div class="max-w-5xl mx-auto">
@@ -544,7 +893,7 @@ Session 'my-project' terminated.
 
       <!-- Benefits & Testimonials -->
       <section
-        class="py-16 px-6 md:px-12 lg:px-24 bg-terminal-gray"
+        class="py-16 px-6 md:px-12 lg:px-24 bg-terminal-black"
         aria-labelledby="benefits-heading"
       >
         <div class="max-w-5xl mx-auto">
@@ -714,185 +1063,10 @@ Session 'my-project' terminated.
         </div>
       </section>
 
-      <!-- Installation Section -->
-      <section
-        id="install"
-        class="py-16 px-6 md:px-12 lg:px-24 bg-terminal-black"
-        aria-labelledby="installation-heading"
-      >
-        <div class="max-w-5xl mx-auto">
-          <div class="text-center mb-12">
-            <h2
-              class="text-3xl md:text-4xl font-bold mb-4"
-              id="installation-heading"
-            >
-              Installation
-            </h2>
-            <p class="text-xl text-gray-300">Get started in seconds</p>
-          </div>
-
-          <div
-            class="bg-terminal-gray rounded-xl overflow-hidden shadow-xl mb-12"
-          >
-            <div
-              class="bg-terminal-highlight p-4 rounded-t-xl flex items-center"
-            >
-              <i
-                class="fas fa-check-circle text-terminal-green mr-2"
-                aria-hidden="true"
-              ></i>
-              <h3 class="text-xl font-semibold">Quick Install (Recommended)</h3>
-            </div>
-            <div class="p-6 code-block">
-              <pre
-                class="text-gray-300"
-                aria-label="Quick installation command"
-              >
-<span class="text-yellow-400">curl -fsSL https://raw.githubusercontent.com/kolarski/s/master/install.sh | bash</span>
-</pre>
-            </div>
-            <div class="p-4 bg-terminal-highlight text-sm">
-              <p class="text-gray-300">The script intelligently:</p>
-              <ul class="list-disc list-inside text-gray-300 pl-4 mt-2">
-                <li>Detects your OS</li>
-                <li>Downloads the appropriate binary</li>
-                <li>Installs to the correct location</li>
-                <li>Adds to your PATH if needed</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="space-y-8">
-            <div class="bg-terminal-gray rounded-xl overflow-hidden shadow-xl">
-              <div class="bg-terminal-highlight p-4 rounded-t-xl">
-                <h3 class="text-xl font-semibold">Arch Linux (AUR)</h3>
-              </div>
-              <div class="p-6">
-                <p class="text-gray-300 mb-4">
-                  If you're using Arch Linux or an Arch-based distribution, you
-                  can install
-                  <code class="bg-terminal-highlight px-2 py-0.5 rounded"
-                    >s-screen</code
-                  >
-                  from the AUR using your preferred helper:
-                </p>
-                <div class="code-block mb-4">
-                  <pre class="text-gray-300">
-<span class="text-gray-400"># Using yay</span>
-<span class="text-yellow-400">yay -S s-screen</span>
-
-<span class="text-gray-400"># Using paru</span>
-<span class="text-yellow-400">paru -S s-screen</span>
-
-<span class="text-gray-400"># Using pamac (Manjaro)</span>
-<span class="text-yellow-400">pamac install s-screen</span>
-
-<span class="text-gray-400"># Manual AUR installation</span>
-<span class="text-yellow-400">git clone https://aur.archlinux.org/s-screen.git
-cd s-screen
-makepkg -si</span></pre>
-                </div>
-                <p class="text-gray-300">
-                  The package is maintained in the
-                  <a
-                    href="https://aur.archlinux.org/packages/s-screen"
-                    class="text-terminal-green hover:underline"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    >AUR as s-screen</a
-                  >. After installation, verify with
-                  <code class="bg-terminal-highlight px-2 py-0.5 rounded"
-                    >s --version</code
-                  >
-                </p>
-              </div>
-            </div>
-
-            <div class="bg-terminal-gray rounded-xl overflow-hidden shadow-xl">
-              <div class="bg-terminal-highlight p-4 rounded-t-xl">
-                <h3 class="text-xl font-semibold">Manual Binary Download</h3>
-              </div>
-              <div class="p-6">
-                <p class="text-gray-300 mb-4">
-                  You can also download the pre-compiled binary directly from
-                  the
-                  <a
-                    href="https://github.com/kolarski/s/releases"
-                    class="text-terminal-green hover:underline"
-                    rel="noopener noreferrer"
-                    aria-label="GitHub releases page for s terminal manager"
-                    >GitHub releases page</a
-                  >:
-                </p>
-                <ol
-                  class="list-decimal list-inside text-gray-300 space-y-2 pl-4"
-                >
-                  <li>
-                    Download the appropriate binary for your system (Linux or
-                    macOS)
-                  </li>
-                  <li>
-                    Make it executable:
-                    <code class="bg-terminal-highlight px-2 py-0.5 rounded"
-                      >chmod +x s-linux-amd64</code
-                    >
-                    or
-                    <code class="bg-terminal-highlight px-2 py-0.5 rounded"
-                      >chmod +x s-macos-amd64</code
-                    >
-                  </li>
-                  <li>
-                    Move it to a directory in your PATH:
-                    <code class="bg-terminal-highlight px-2 py-0.5 rounded"
-                      >mv s-linux-amd64 /usr/local/bin/s</code
-                    >
-                    or
-                    <code class="bg-terminal-highlight px-2 py-0.5 rounded"
-                      >mv s-macos-amd64 /usr/local/bin/s</code
-                    >
-                  </li>
-                </ol>
-              </div>
-            </div>
-
-            <div class="bg-terminal-gray rounded-xl overflow-hidden shadow-xl">
-              <div class="bg-terminal-highlight p-4 rounded-t-xl">
-                <h3 class="text-xl font-semibold">From Source</h3>
-              </div>
-              <div class="p-6">
-                <p class="text-gray-300 mb-4">
-                  For developers who prefer to build from source:
-                </p>
-                <div class="code-block mb-4">
-                  <pre class="text-gray-300">
-<span class="text-yellow-400">git clone https://github.com/kolarski/s.git
-cd s
-cargo install --path .</span></pre>
-                </div>
-                <div class="bg-terminal-highlight p-4 rounded">
-                  <h4 class="font-semibold mb-2">Requirements</h4>
-                  <ul class="list-disc list-inside text-gray-300 pl-4">
-                    <li>Rust toolchain (cargo)</li>
-                    <li>
-                      Linux
-                      <code class="bg-terminal-highlight px-2 py-0.5 rounded"
-                        >screen</code
-                      >
-                      command must be installed
-                    </li>
-                    <li>Compatible with Linux and macOS</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       <!-- Changelog Section -->
       <section
         id="changelog"
-        class="py-16 px-6 md:px-12 lg:px-24 bg-terminal-black"
+        class="py-16 px-6 md:px-12 lg:px-24 bg-terminal-gray"
         aria-labelledby="changelog-heading"
       >
         <div class="max-w-5xl mx-auto">
@@ -913,6 +1087,17 @@ cargo install --path .</span></pre>
                 <span class="ml-4 text-gray-400">2025-03-23</span>
               </div>
               <ul class="space-y-2 text-gray-300">
+                <li class="flex items-start">
+                  <i
+                    class="fas fa-plus-circle text-terminal-green mt-1 mr-2"
+                  ></i>
+                  <span
+                    >Added Homebrew package support (<code
+                      class="bg-terminal-highlight px-2 py-0.5 rounded"
+                      >brew tap kolarski/s-screen && brew install s-screen</code
+                    >)</span
+                  >
+                </li>
                 <li class="flex items-start">
                   <i
                     class="fas fa-plus-circle text-terminal-green mt-1 mr-2"
@@ -962,7 +1147,7 @@ cargo install --path .</span></pre>
 
       <!-- Footer -->
       <footer
-        class="py-12 px-6 md:px-12 lg:px-24 bg-terminal-gray border-t border-terminal-highlight"
+        class="py-12 px-6 md:px-12 lg:px-24 bg-terminal-black border-t border-terminal-highlight"
         role="contentinfo"
       >
         <div class="max-w-5xl mx-auto">

@@ -100,3 +100,52 @@ If the installation fails, check:
 2. All dependencies are correctly specified in the PKGBUILD
 3. The package name matches exactly in the AUR
 4. The AUR helper can access the AUR repository
+
+## Homebrew Installation Testing
+
+The `test_homebrew.sh` script helps you test the installation of your package from Homebrew using a Docker container that simulates a macOS-like environment. This ensures that your package can be installed correctly by users through Homebrew.
+
+### Prerequisites
+
+- Docker installed on your system
+- Bash shell
+- Your package must be submitted as a Homebrew tap
+
+### Usage
+
+1. Make the script executable:
+
+   ```bash
+   chmod +x test_homebrew.sh
+   ```
+
+2. Run the test script from the `tools` directory:
+   ```bash
+   ./test_homebrew.sh
+   ```
+
+The script will:
+
+1. Start a container with Homebrew support
+2. Install Homebrew
+3. Add your tap
+4. Attempt to install your package
+5. Verify the installation by checking if the binary is available
+6. Clean up the container after the test
+
+### What it Tests
+
+- Homebrew tap availability
+- Package installation
+- Binary availability
+- Package version reporting
+- Dependencies resolution
+
+### Troubleshooting
+
+If the installation fails, check:
+
+1. Your tap repository is properly set up
+2. All dependencies are correctly specified in the formula
+3. The package name matches exactly in the tap
+4. The Homebrew formula can access the source code

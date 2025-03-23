@@ -156,7 +156,17 @@ paru -S s-screen
 pamac install s-screen
 ```
 
-The package is maintained in the [AUR as s-screen](https://aur.archlinux.org/packages/s-screen).
+### Homebrew (macOS & Linux)
+
+If you're using macOS or Linux with Homebrew installed, you can install `s-screen` using:
+
+```bash
+# Add the tap
+brew tap kolarski/s-screen
+
+# Install s-screen
+brew install s-screen
+```
 
 ### Manual Binary Download
 
